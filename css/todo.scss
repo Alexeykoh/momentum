@@ -1,0 +1,442 @@
+*,
+*::after,
+*::before {
+	margin  : 0;
+	padding : 0;
+}
+
+.ToDo__widget.active {
+	transform : translate(0, 0);
+}
+
+.ToDo__widget {
+	transition : .2s ease-in-out;
+	transform  : translate(0, 400px);
+	//
+	z-index    : 300;
+	position   : absolute;
+	left       : 0;
+	bottom     : 0;
+	//transform : translate(50%, 25%);
+}
+
+.ToDo__hide_btn {
+	position : absolute;
+	top : -10px;
+	right : -10px;
+	padding : 5px;
+	background: white;
+	border-radius: 50px;
+	z-index: 320;
+	width : 25px;
+	height : 25px;
+	transition: .5s ease-in-out;
+	&:hover {
+		transform: rotate(180deg);
+	}
+}
+
+.ToDo__Wrapper {
+	width    : 365px;
+	height   : 450px;
+	position : relative;
+	transition     : .5s ease-in-out;
+	//
+	
+	.ToDo {
+		transition     : .5s ease-in-out;
+		user-select    : none;
+		position       : absolute;
+		width          : 100%;
+		height         : 100%;
+		//
+		display        : flex;
+		flex-direction : column;
+		
+		//overflow-y: auto;
+		//
+		background     : rgba(255, 255, 255, 0.2);
+		border-radius  : 10px;
+		
+		.ToDo__nav {
+			position        : relative;
+			
+			img {
+				width  : 35px;
+				height : auto;
+				margin : 10px;
+			}
+			
+			.addListBtn {
+				&:hover {
+					transform : scale(1.1);
+				}
+			}
+			
+			.clearTasks__container {
+				position   : relative;
+				transition : .2s ease-in-out;
+				
+				.clearTasks {
+					&:hover {
+						transform : scale(1.1);
+					}
+					
+					&:hover ~ .clear-description {
+						opacity : 1;
+						display : block;
+						color   : black;
+					}
+				}
+				
+				.clear-description {
+					display       : none;
+					opacity       : 0;
+					//
+					position      : absolute;
+					right         : 55px;
+					top           : 15px;
+					width         : 180px;
+					padding       : 5px;
+					background    : rgba(240, 248, 255, 0.7);
+					border-radius : 10px;
+					text-align    : center;
+				}
+			}
+			transition     : .5s ease-in-out;
+			//
+			width           : 100%;
+			//
+			display         : flex;
+			flex-direction  : row;
+			align-items     : center;
+			justify-content : space-between;
+			//
+			background      : rgba(214, 93, 177, 0.9);
+			border-radius   : 10px;
+			//
+		}
+		
+		.settings_btn {
+			border-radius : 10px;
+			background    : rgba(255, 255, 255, 0.4);
+			position      : absolute;
+			bottom        : 5px;
+			right         : 5px;
+			width         : 25px;
+			opacity       : .3;
+			
+			&:hover {
+				transition : .6s ease-in-out;
+				transform  : rotate(360deg);
+				opacity    : 1;
+			}
+			
+			&:active {
+				transition : .2s ease-in-out;
+				transform  : scale(1.2);
+				
+			}
+		}
+		
+		.board {
+			//
+			transition : .2s ease-in-out;
+			overflow-y     : visible;
+			overflow-x     : hidden;
+			padding        : 10px 0;
+			width          : 100%;
+			display        : flex;
+			flex-direction : column;
+			align-items    : center;
+			gap            : 10px;
+			
+			&::-webkit-scrollbar {
+				width : 0;
+			}
+			
+			//
+			.list {
+				@media (min-width : 765px) {
+					&:hover {
+						transform : translate(10px, 0);
+					}
+				}
+				
+				img {
+					width  : 25px;
+					height : auto;
+				}
+				
+				@media (min-width : 765px) {
+					animation : newFromLeft .3s;
+				}
+				transition      : .5s ease-in-out;
+				//
+				border-radius   : 10px;
+				//
+				margin-top      : 10px;
+				margin-bottom   : 10px;
+				width           : 90%;
+				//
+				display         : flex;
+				flex-direction  : column;
+				justify-content : right;
+				//
+				box-shadow      : 10px 5px 5px rgba(0, 0, 0, 0.2);
+				//
+				.list__head {
+					img {
+						width  : 25px;
+						height : auto;
+						//
+					}
+					
+					.list__preName {
+						font-size : 1.1rem;
+					}
+					
+					.list__name {
+						color: white;
+						font-family   : "Roboto Light", sans-serif;
+						font-size     : 1.1rem;
+						border        : 0;
+						outline       : 0;
+						background    : transparent;
+						resize        : none;
+						//
+						padding-right : 10px;
+						//
+						&::placeholder {
+							color     : rgba(0, 0, 0, 0.61);
+							font-size : 1.1rem;
+						}
+					}
+					
+					.color_pallet {
+						&:hover {
+							transform : scale(1.1);
+						}
+					}
+					
+					margin          : 5px;
+					//
+					display         : flex;
+					flex-direction  : row;
+					align-items     : center;
+					justify-content : space-between;
+					padding         : 0 10px;
+				}
+				
+				.task__list {
+					//
+					transition     : .5s ease-in-out;
+					display        : flex;
+					flex-direction : column;
+					align-items    : end;
+					//
+					list-style     : none;
+					gap            : 10px;
+					//
+					.task {
+						//height: 100%;
+						animation      : newFromLeft .3s;
+						border         : solid rgba(0, 0, 0, 0.23) 2px;
+						padding        : 5px;
+						border-radius  : 10px;
+						font-size      : .6rem;
+						//
+						margin-right   : 10px;
+						background     : rgba(0, 0, 0, 0.08);
+						//
+						list-style     : none;
+						display        : flex;
+						flex-direction : column;
+						//
+						.task__trash {
+							align-self : end;
+							
+							&:hover {
+								//transform : scale(1.3);
+								animation : UnD .5s;
+							}
+						}
+						
+						.task__deadline {
+							font-family   : "Roboto Light", sans-serif;
+							//
+							background    : transparent;
+							border-radius : 5px;
+							border        : 0;
+							outline       : 0;
+							//
+						}
+						
+						.task__wrapper {
+							width           : 280px;
+							//
+							display         : flex;
+							align-items     : center;
+							flex-direction  : row;
+							justify-content : space-between;
+							//
+							.check {
+								&:hover {
+									transform : scale(1.3);
+								}
+								
+								//
+								display       : none;
+								background    : rgba(255, 255, 255, 0.6);
+								border-radius : 5px;
+							}
+							
+							.check.active {
+								display : block;
+							}
+							
+							.task__checkbox {
+								align-self : center;
+								display    : none;
+							}
+						}
+						
+						//
+						.task__content {
+							margin-top   : 5px;
+							font-family  : "Roboto Light", sans-serif;
+							font-size    : 1.1rem;
+							align-self   : center;
+							margin-left  : 10px;
+							margin-right : 10px;
+							width        : 100%;
+							//
+							border       : 0;
+							outline      : 0;
+							background   : transparent;
+							resize       : none;
+							height       : auto;
+							
+							&::placeholder {
+								color     : rgba(0, 0, 0, 0.5);
+								font-size : 1.2rem;
+							}
+						}
+						
+						
+						::-webkit-calendar-picker-indicator {
+							background-color : rgba(255, 255, 255, 0.32);
+							padding          : 5px;
+							cursor           : pointer;
+							border-radius    : 5px;
+						}
+						
+						input[type="date"] {
+							align-items          : center;
+							display              : inline-flex;
+							font-family          : monospace;
+							padding-inline-start : 1px;
+							cursor               : default;
+							overflow             : hidden;
+						}
+					}
+				}
+				
+				.list__options {
+					display         : flex;
+					justify-content : space-between;
+					align-items     : center;
+					margin          : 10px 20px;
+					//
+					.addTaskBtn {
+						padding       : 5px;
+						background    : rgba(240, 248, 255, 0.6);
+						border-radius : 10px;
+						
+						&:hover {
+							transform : scale(1.3);
+						}
+					}
+					
+					//
+					.delete__list {
+						padding       : 5px;
+						background    : rgba(240, 248, 255, 0.6);
+						border-radius : 10px;
+						
+						&:hover {
+							transform : scale(1.3) rotate(10deg);
+						}
+					}
+				}
+				
+				//
+			}
+		}
+	}
+}
+
+@keyframes delete {
+	0% {
+		transform : translate(0, 0);
+	}
+	100% {
+		transform : translate(150%, 0);
+	}
+}
+
+@keyframes newFromLeft {
+	0% {
+		transform : translate(-150%, 0);
+	}
+	50% {
+		transform : translate(5%, 0);
+	}
+	100% {
+		transform : translate(0, 0);
+	}
+}
+
+@keyframes newListBTN {
+	0% {
+		transform : scale(1);
+	}
+	50% {
+		transform : scale(1.05);
+	}
+	50% {
+		transform : scale(1.05);
+	}
+}
+
+@keyframes UnD {
+	0% {
+		transform : translate(0, 0);
+	}
+	50% {
+		transform : translate(0, -30%);
+	}
+	100% {
+		transform : translate(0, 0);
+	}
+}
+
+@keyframes thanos {
+	0% {
+		opacity : 1;
+	}
+	100% {
+		opacity : 0;
+	}
+}
+
+.background.active {
+	border-radius : 10px;
+	background    : rgba(0, 0, 0, 0.73);
+	width         : 100%;
+	height        : 100%;
+	position      : absolute;
+	z-index       : 150;
+	left          : 0;
+	top           : 0;
+}

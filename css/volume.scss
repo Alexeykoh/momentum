@@ -1,0 +1,70 @@
+.volume-btn{
+    &:hover{
+        transform: scale(1.2) rotate(-15deg);
+    }
+    //
+    display: none;
+    //
+    width : 30px;
+    height : 30px;
+    padding : 5px;
+    border-radius: 100px;
+}
+.volume-btn.active{
+    display: block;
+}
+.trackItems{
+    display: flex;
+    flex-direction: column;
+    gap : 5px;
+    width : 100%;
+}
+.trackItems.active{
+    transition: .2s;
+    background: rgba(132, 94, 194, 0.92);
+    box-shadow: -6px 6px 2px 1px rgba(0, 0, 0, 0.32);
+    padding : 5px 10px;
+    border-radius: 10px;
+    &:hover{
+        transform: scale(1.02);
+    }
+}
+
+.volumeWrapper{
+    
+    display: none;
+    transition: .3s;
+}
+.volumeWrapper.active{
+    transition: .3s;
+    background: white;
+    display: flex;
+    border-radius: 10px;
+}
+.volumeFader{
+    transition: .8s;
+    display: none;
+    opacity: 0;
+}
+.volumeWrapper:hover{
+    transition: .5s;
+    width : 100%;
+    .volumeFader{
+        animation : vol .2s ease-in-out;
+        width : 105px;
+        display: block;
+        opacity: 1;
+    }
+}
+
+.trackName{
+
+}
+@keyframes vol {
+    0% {
+        width : 0;
+    }
+    100% {
+        width : 105px;
+    }
+}
