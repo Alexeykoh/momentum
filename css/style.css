@@ -95,13 +95,24 @@ body {
   }
 }
 .play-list {
+  max-height: 250px;
+  overflow-y: visible;
+  overflow-x: hidden;
   text-align: left;
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
+.play-list::-webkit-scrollbar {
+  width: 0;
+}
 
+.common__control {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 .play-item {
   position: relative;
   padding: 5px;

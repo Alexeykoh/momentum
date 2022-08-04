@@ -1,22 +1,37 @@
 const playList = [
+	// {
+	// 	title:    'Aqua Caelestis',
+	// 	src:      './assets/sounds/AquaCaelestis.mp3',
+	// 	duration: '00:40'
+	// },
+	// {
+	// 	title:    'River Flows In You',
+	// 	src:      './assets/sounds/River Flows In You.mp3',
+	// 	duration: '01:37'
+	// },
+	// {
+	// 	title:    'Ennio Morricone',
+	// 	src:      './assets/sounds/Ennio Morricone.mp3',
+	// 	duration: '01:37'
+	// },
+	// {
+	// 	title:    'Summer Wind',
+	// 	src:      './assets/sounds/Summer Wind.mp3',
+	// 	duration: '01:51'
+	// },
 	{
-		title:    'Aqua Caelestis',
-		src:      './assets/sounds/AquaCaelestis.mp3',
-		duration: '00:40'
+		title:    'DD - Mish',
+		src:      './assets/sounds/DD - MISH.mp3',
+		duration: '01:51'
 	},
 	{
-		title:    'River Flows In You',
-		src:      './assets/sounds/River Flows In You.mp3',
-		duration: '01:37'
+		title:    'DD - Vonka',
+		src:      './assets/sounds/DD - VONKA.mp3',
+		duration: '01:51'
 	},
 	{
-		title:    'Ennio Morricone',
-		src:      './assets/sounds/Ennio Morricone.mp3',
-		duration: '01:37'
-	},
-	{
-		title:    'Summer Wind',
-		src:      './assets/sounds/Summer Wind.mp3',
+		title:    'ЗУБЫ :) - KAZN.mp3',
+		src:      './assets/sounds/ЗУБЫ - KAZN.mp3',
 		duration: '01:51'
 	}
 ]
@@ -30,8 +45,9 @@ let trackProps = {
 	currentTime: 0,
 }
 
+// === // === // === // === // === //
+// rendering playlist in DOM
 renderPlaylist ()
-
 function renderPlaylist () {
 	playList.forEach ((a, index) => {
 		const classPlaylist = document.querySelector ('.play-list')
@@ -111,6 +127,8 @@ function progBar (prog) {
 	// console.log (prog.value)
 }
 
+// === // === // === // === // === //
+// set track volume by volume fader
 function volBar (vol) {
 	trackProps.volume     = vol.value;
 	trackProps.prevVolume = trackProps.volume;
@@ -126,6 +144,8 @@ function volBar (vol) {
 	})
 }
 
+// === // === // === // === // === //
+// set track to play
 let currentTrackFromID = 0;
 const allTracks        = document.querySelectorAll ('.trackName')
 allTracks.forEach (function (track) {
@@ -138,6 +158,8 @@ allTracks.forEach (function (track) {
 
 document.querySelector ('.track-name').innerHTML = playList[currentTrackFromID].title
 
+// === // === // === // === // === //
+// set trek to play ay current position in playlist
 function currentTrack () {
 	document.querySelector ('.track-name').innerHTML = playList[currentTrackFromID].title;
 	const allTracks                                  = document.querySelectorAll ('.progress-bar')
@@ -160,7 +182,8 @@ function currentTrack () {
 	playAudio (playList[currentTrackFromID].src, currentTrackFromID)
 }
 
-
+// === // === // === // === // === //
+// volume buttons
 const volUP = document.querySelectorAll ('.volume-btn')
 volUP.forEach (function (element) {
 	element.addEventListener ('click', function (a) {
@@ -171,6 +194,8 @@ volUP.forEach (function (element) {
 	})
 })
 
+// === // === // === // === // === //
+// mute sound
 function mute () {
 	let allFaders = document.querySelectorAll ('.volumeFader')
 	allFaders.forEach (function (fader) {
@@ -186,6 +211,8 @@ function mute () {
 	})
 }
 
+// === // === // === // === // === //
+// sound mute button
 function muteImg () {
 	const volUP = document.querySelectorAll ('.volume-btn')
 	volUP.forEach (function (kek) {
@@ -199,37 +226,41 @@ function muteImg () {
 	})
 }
 
-
+// === // === // === // === // === //
+//  default const
 const kek     = new Audio ();
 const playImg = document.querySelector ('.play')
 
+
+// === // === // === // === // === //
+// play audio from track properties
 function playAudio (src, id) {
 	// to default props
 	if (trackProps.src === '') {
-		trackProps.src         = playList.src
+		trackProps.src         = playList[0].src
 		trackProps.volume      = 0.8;
 		trackProps.currentTime = 0;
-	}
-	playImg.classList.add ('pause')
-	//
-	if (trackProps.onAir) {
-		pause ()
-	}
-	//
-	kek.src         = trackProps.src;
-	kek.volume      = trackProps.volume;
-	kek.currentTime = trackProps.currentTime;
-	//
-	kek.play ()
-	trackDuration ()
-	trackProps.onAir = true
+		currentTrack()
+	} else {
 
-	//
-	console.log (src, id, trackProps)
-	console.log (kek)
+		playImg.classList.add ('pause')
+		//
+		if (trackProps.onAir) {
+			pause ()
+		}
+		//
+		kek.src         = trackProps.src;
+		kek.volume      = trackProps.volume;
+		kek.currentTime = trackProps.currentTime;
+		//
+		kek.play ()
+		trackDuration ()
+		trackProps.onAir = true
+	}
 }
 
-
+// === // === // === // === // === //
+// buttons
 const playNextBtn = document.querySelector ('.play-next')
 const playPrevBtn = document.querySelector ('.play-prev')
 const playBtn     = document.querySelector ('.play')
@@ -248,6 +279,8 @@ playBtn.addEventListener ('click', () => {
 	playAudio ()
 })
 
+// === // === // === // === // === //
+// paused music
 function pause () {
 	console.log (pause)
 	playImg.classList.remove ('pause')
@@ -257,6 +290,8 @@ function pause () {
 	}, 10)
 }
 
+// === // === // === // === // === //
+// next track
 function nextTrack () {
 	currentTrackFromID++
 	if (currentTrackFromID === playList.length) {
@@ -267,6 +302,8 @@ function nextTrack () {
 	// playAudio(playList[currentTrackFromID].src, currentTrackFromID)
 }
 
+// === // === // === // === // === //
+// previous track
 function prevTrack () {
 	currentTrackFromID--
 	if (currentTrackFromID < 0) {
@@ -278,10 +315,8 @@ function prevTrack () {
 }
 
 
-document.querySelector ('.track-name').addEventListener ('click', function () {
-	console.log (trackProps)
-})
-
+// === // === // === // === // === //
+// track duration
 function trackDuration () {
 	setTimeout (function () {
 		renderProgressBar (currentTrackFromID)
@@ -291,6 +326,8 @@ function trackDuration () {
 	}, 1000)
 }
 
+// === // === // === // === // === //
+// music progress bar
 function renderProgressBar (id) {
 	let bar                = document.getElementById (`progBar-${id}`)
 	bar.max                = kek.duration;
@@ -302,6 +339,8 @@ function renderProgressBar (id) {
 	// console.log (mins+':'+secs)
 }
 
+// === // === // === // === // === //
+// set current time to progress bar
 const allProgBar = document.querySelectorAll ('.progress-bar')
 allProgBar.forEach (function (bar) {
 	bar.addEventListener ('input', function (a) {
@@ -310,6 +349,8 @@ allProgBar.forEach (function (bar) {
 })
 
 
+// === // === // === // === // === //
+// reset tracks properties
 function resetTrackProps () {
 	trackProps.currentTime = 0;
 	trackProps.onAir       = false;

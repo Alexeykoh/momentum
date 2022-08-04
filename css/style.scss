@@ -106,11 +106,35 @@ body {
 }
 
 .play-list {
+	max-height : 250px;
+	overflow-y     : visible;
+	overflow-x     : hidden;
 	text-align     : left;
 	list-style     : none;
 	display        : flex;
 	flex-direction : column;
 	gap            : 5px;
+	&::-webkit-scrollbar {
+		width : 0;
+	}
+}
+
+.common__control{
+	display: flex;
+	flex-direction: column;
+	gap : 5px;
+	.progress-bar.common{
+	
+	}
+	.volumeWrapper__common{
+		.volume-btn__common{
+		
+		}
+		.volumeFader__common{
+		
+		}
+	
+	}
 }
 
 .play-item {
