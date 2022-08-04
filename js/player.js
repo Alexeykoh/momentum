@@ -1,22 +1,22 @@
 const playList = [
 	{
 		title:    'Aqua Caelestis',
-		src:      '../assets/sounds/AquaCaelestis.mp3',
+		src:      './assets/sounds/AquaCaelestis.mp3',
 		duration: '00:40'
 	},
 	{
 		title:    'River Flows In You',
-		src:      '../assets/sounds/River Flows In You.mp3',
+		src:      './assets/sounds/River Flows In You.mp3',
 		duration: '01:37'
 	},
 	{
 		title:    'Ennio Morricone',
-		src:      '../assets/sounds/Ennio Morricone.mp3',
+		src:      './assets/sounds/Ennio Morricone.mp3',
 		duration: '01:37'
 	},
 	{
 		title:    'Summer Wind',
-		src:      '../assets/sounds/Summer Wind.mp3',
+		src:      './assets/sounds/Summer Wind.mp3',
 		duration: '01:51'
 	}
 ]
@@ -226,6 +226,7 @@ function playAudio (src, id) {
 
 	//
 	console.log (src, id, trackProps)
+	console.log (kek)
 }
 
 
@@ -305,7 +306,6 @@ const allProgBar = document.querySelectorAll ('.progress-bar')
 allProgBar.forEach (function (bar) {
 	bar.addEventListener ('input', function (a) {
 		kek.currentTime = this.value
-
 	})
 })
 

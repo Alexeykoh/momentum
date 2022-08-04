@@ -6,12 +6,14 @@
 }
 
 .ToDo__widget.active {
+	
 	transform : translate(0, 0);
 }
 
 .ToDo__widget {
+	
 	transition : .2s ease-in-out;
-	transform  : translate(0, 400px);
+	transform  : translate(0, 390px);
 	//
 	z-index    : 300;
 	position   : absolute;
@@ -21,26 +23,27 @@
 }
 
 .ToDo__hide_btn {
-	position : absolute;
-	top : -10px;
-	right : -10px;
-	padding : 5px;
-	background: white;
-	border-radius: 50px;
-	z-index: 320;
-	width : 25px;
-	height : 25px;
-	transition: .5s ease-in-out;
+	position      : absolute;
+	top           : -10px;
+	right         : -10px;
+	padding       : 5px;
+	background    : white;
+	border-radius : 50px;
+	z-index       : 320;
+	width         : 25px;
+	height        : 25px;
+	transition    : .5s ease-in-out;
+	
 	&:hover {
-		transform: rotate(180deg);
+		transform : rotate(180deg);
 	}
 }
 
 .ToDo__Wrapper {
-	width    : 365px;
-	height   : 450px;
-	position : relative;
-	transition     : .5s ease-in-out;
+	width      : 365px;
+	height     : 450px;
+	position   : relative;
+	transition : .5s ease-in-out;
 	//
 	
 	.ToDo {
@@ -103,7 +106,8 @@
 					text-align    : center;
 				}
 			}
-			transition     : .5s ease-in-out;
+			
+			transition      : .5s ease-in-out;
 			//
 			width           : 100%;
 			//
@@ -141,7 +145,7 @@
 		
 		.board {
 			//
-			transition : .2s ease-in-out;
+			transition     : .2s ease-in-out;
 			overflow-y     : visible;
 			overflow-x     : hidden;
 			padding        : 10px 0;
@@ -197,7 +201,7 @@
 					}
 					
 					.list__name {
-						color: white;
+						color         : white;
 						font-family   : "Roboto Light", sans-serif;
 						font-size     : 1.1rem;
 						border        : 0;

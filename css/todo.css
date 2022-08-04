@@ -11,7 +11,7 @@
 
 .ToDo__widget {
   transition: 0.2s ease-in-out;
-  transform: translate(0, 400px);
+  transform: translate(0, 390px);
   z-index: 300;
   position: absolute;
   left: 0;
