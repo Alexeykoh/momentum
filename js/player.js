@@ -305,13 +305,20 @@ function renderProgressBar () {
 	trackProps.currentTime = track.currentTime;
 	let currentTime = 'on pause',
 	    maxTime = ''
-	if( isNaN( convertTime(track.currentTime) ) ){
-		currentTime = 'loading'
-		maxTime = ''
-	} else {
+	if( track.duration > 0 ){
 		currentTime = convertTime(track.currentTime)
 		maxTime = convertTime(track.duration)
+	} else {
+		currentTime = 'loading'
+		maxTime = ''
 	}
+	//
+	console.log ('')
+	console.log (convertTime(track.currentTime))
+	console.log (currentTime)
+	console.log (maxTime)
+	console.log ('')
+	//
 	document.querySelector('.track-time').innerHTML = currentTime+':'+maxTime
 	//
 	if(Math.floor(track.duration-track.currentTime) === 0){
