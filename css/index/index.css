@@ -1210,7 +1210,7 @@ form .form__container .input__wrapper input[type=radio]:checked + label, .form-A
   width: 35px;
   height: 35px;
   background-size: 35px 35px;
-  background-image: url("../../../assets/svg/player/play.svg");
+  background-image: url("./assets/svg/player/play.svg");
 }
 @media (max-width: 625px) {
   .player .player__header .player_control_panel .player-controls .play {
@@ -1220,13 +1220,13 @@ form .form__container .input__wrapper input[type=radio]:checked + label, .form-A
   }
 }
 .player .player__header .player_control_panel .player-controls .pause {
-  background-image: url("../../../assets/svg/player/pause.svg");
+  background-image: url("./assets/svg/player/pause.svg");
 }
 .player .player__header .player_control_panel .player-controls .play-prev {
-  background-image: url("../../../assets/svg/player/prev.svg");
+  background-image: url("./assets/svg/player/prev.svg");
 }
 .player .player__header .player_control_panel .player-controls .play-next {
-  background-image: url("../../../assets/svg/player/next.svg");
+  background-image: url("./assets/svg/player/next.svg");
 }
 .player .player__header .player__bars {
   width: 100%;
