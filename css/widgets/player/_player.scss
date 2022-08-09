@@ -79,19 +79,19 @@ $cont_max-width     : 625px;
 					width            : 35px;
 					height           : 35px;
 					background-size  : 35px 35px;
-					background-image : url("/assets/svg/player/play.svg");
+					background-image : url("../../../assets/svg/player/play.svg");
 				}
 				
 				.pause {
-					background-image : url("/assets/svg/player/pause.svg");
+					background-image : url("../../../assets/svg/player/pause.svg");
 				}
 				
 				.play-prev {
-					background-image : url("/assets/svg/player/prev.svg");
+					background-image : url("../../../assets/svg/player/prev.svg");
 				}
 				
 				.play-next {
-					background-image : url("/assets/svg/player/next.svg");
+					background-image : url("../../../assets/svg/player/next.svg");
 				}
 			}
 		}
