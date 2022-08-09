@@ -1,16 +1,20 @@
-let slidesCounter  = getRandomNum (props.maxSlides)
+let slidesCounter  = getRandomNum (20)
 const nextSlideBtn = document.querySelector ('.slide-next')
 const prevSlideBtn = document.querySelector ('.slide-prev')
+let maxSliders     = 20;
 
-nextSlideBtn.addEventListener ('click', function (slide) {
+
+
+nextSlideBtn.addEventListener ('click', function () {
+	//
 	slidesCounter++
-	if (slidesCounter === props.maxSlides) {
+	if (slidesCounter === maxSliders) {
 		slidesCounter = 0
 	}
 	setBg ()
 })
 //
-prevSlideBtn.addEventListener ('click', function (slide) {
+prevSlideBtn.addEventListener ('click', function () {
 	slidesCounter--
 	if (slidesCounter < 0) {
 		slidesCounter = props.maxSlides
@@ -19,9 +23,8 @@ prevSlideBtn.addEventListener ('click', function (slide) {
 })
 
 setBg ()
+
 function setBg () {
-	const body = document.querySelector ('body')
-	const img  = new Image ();
 	//
 	let number = slidesCounter;
 	if (slidesCounter < 10) {
@@ -33,7 +36,66 @@ function setBg () {
 		number = '01'
 	}
 	//
-	img.src    = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${greet}/${number}.jpg`
+	let toDATA = {
+		number_: number,
+		greet_:  greet,
+	}
+	//
+	connectAPI (toDATA)
+	//
+
+}
+
+function connectAPI (data) {
+	let importData = data;
+	const body     = document.querySelector ('body')
+	const img      = new Image ();
+	//
+	let tagList    = greet + "" + properties.tags.join (',')
+	if (properties.tags.length > 0) {
+		tagList = greet + ", " + properties.tags.join (', ')
+	}
+	//
+	// GitHub API
+	if (properties.slider.GitHub) {
+		maxSliders = 20
+		console.log ('GitHub')
+		img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${data.greet_}/${data.number_}.jpg`
+	}
+	//
+	// Unsplash_API
+	if (properties.slider.Unsplash_API) {
+		console.log ('Unsplash_API')
+		let orientation = 'landscape',
+		    query       = `${tagList}`,
+		    client_id   = 'NPMe2vW-WJ_bpBgPsh4Os0PoDGKPlKI9dcg-V793pp0',
+		    fetchURL    = `https://api.unsplash.com/photos/random?${orientation}=landscape&query=${query}&client_id=${client_id}`
+		//
+		fetch (fetchURL)
+			.then (res => res.json ())
+			.then (data => {
+				// console.log (data)
+				img.src = data.urls.regular
+			});
+	}
+	// Flickr_API
+	if (properties.slider.Flickr_API) {
+		console.log ('Flickr_API')
+		let extras   = 'url_h',
+		    tags     = `${tagList}`, //
+		    api_key  = 'a3ce305b786cb95b4e45914adc19d186',
+		    fetchURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api_key}&tags=${tags}&extras=${extras}&format=json&nojsoncallback=1`
+		//
+		fetch (fetchURL)
+			.then (res => res.json ())
+			.then (data => {
+				maxSliders = data.photos.photo.length
+				// console.log (importData.number_*1)
+				img.src    = data.photos.photo[importData.number_ * 1].url_h
+			});
+	}
+	//
+	// set background
 	img.onload = () => {
 		body.style.backgroundImage = `url(${img.src})`;
 	};

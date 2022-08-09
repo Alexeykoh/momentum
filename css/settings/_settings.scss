@@ -1,0 +1,285 @@
+$sett_bg_color         : rgba(214, 93, 177, 0.7);
+$sett_wrapper_color    : rgba(254, 221, 244, 0.4);
+$sett_active-btn_color : #00a4b6;
+$sett_btn_color        : rgba(255, 255, 255, 0.44);
+
+.settings__wrapper{
+	align-self: end;
+	width : 300px;
+	display: flex;
+	flex-direction: row;
+	//align-items: start;
+	justify-content: end;
+}
+
+.settings__btn {
+	//align-self: end;
+	//position      : absolute;
+	bottom        : 20px;
+	right         : 20px;
+	padding       : 10px;
+	background    : rgba(255, 255, 255, 0.7);
+	border-radius : 100px;
+	transition    : .3s ease-in-out;
+	width         : 50px;
+	height        : 50px;
+	
+	&.active {
+		display : none;
+	}
+	
+	&:hover {
+		transform : rotate(180deg);
+	}
+}
+
+.settings__bg {
+	z-index    : 1000;
+	position   : absolute;
+	top        : 0;
+	left       : 0;
+	display    : none;
+	width      : 100%;
+	height     : 100%;
+	background : rgba(0, 0, 0, 0.37);
+	
+	&.active {
+		display   : block;
+		//animation : thanosRevers .2s ease-in-out;
+	}
+}
+
+.settings {
+	user-select : none;
+	position    : relative;
+	bottom      : 20px;
+	right       : 20px;
+	z-index     : 1100;
+	color       : black;
+}
+
+
+.settings__window {
+	//&::-webkit-scrollbar {
+	//	//width : 0;
+	//}
+	.preference{
+		text-align: start;
+		font-size: 1.4rem;
+	}
+	.global__setting{
+		img{
+			width : 35px;
+			height : 35px;
+		}
+		display: flex;
+		flex-direction: row;
+	}
+	
+	&::-webkit-scrollbar {
+		width : .5em;
+	}
+	
+	&::-webkit-scrollbar-thumb {
+		background-color : rgba(255, 255, 255, 0.4);
+		border-radius    : 5px;
+	}
+	
+	
+	overflow-y     : visible;
+	overflow-x     : hidden;
+	//
+	width          : 300px;
+	height         : 370px;
+	//
+	//display        : none;
+	transform: translate(50vw);
+	transition: 1s;
+	visibility: hidden;
+	//
+	position       : absolute;
+	bottom         : 0;
+	right          : 0;
+	background     : $sett_bg_color;
+	padding        : 10px;
+	border-radius  : 10px;
+	flex-direction : column;
+	gap            : 10px;
+	display        : flex;
+	
+	&.active {
+		
+		flex-direction : column;
+		transform: translate(0);
+		visibility: visible;
+		//animation      : thanosRevers .2s ease-in-out;
+	}
+	
+}
+
+label {
+	width           : 100%;
+	display         : flex;
+	flex-direction  : row-reverse;
+	justify-content : start;
+	padding         : 5px 15px;
+	border-radius   : 5px;
+	align-items     : center;
+	gap             : 5px;
+}
+
+input[type="radio"] {
+	display : none;
+}
+
+input[type="checkbox"] {
+	display : none;
+}
+
+
+img {
+	width  : 25px;
+	height : 25px;
+}
+
+
+form, .form-API_tags {
+	//border  : solid 3px black;
+	//padding : 5px;
+	//background     : $sett_wrapper_color;
+	border-radius : 10px;
+	
+	p {
+		padding    : 10px 0;
+		text-align : start;
+		font-size  : 1.2rem;
+	}
+	
+	.tags__container {
+		display        : flex;
+		flex-direction : column;
+		align-items    : start;
+		gap            : 10px;
+		
+		.setNewTag {
+			display        : flex;
+			flex-direction : row;
+			align-items    : start;
+		}
+		
+		ul {
+			display        : flex;
+			flex-direction : row;
+			align-items    : start;
+			flex-wrap      : wrap;
+			gap            : 5px;
+			
+			li {
+				position      : relative;
+				padding       : 8px 18px;
+				border-radius : 20px;
+				list-style    : none;
+				background    : $sett_active-btn_color;
+				
+				&:hover {
+					filter : brightness(1.2);
+					
+					img {
+						display : block
+					}
+				}
+				
+				img {
+					display  : none;
+					position : absolute;
+					top      : -10px;
+					right    : -10px;
+					width    : 25px;
+					height   : 25px;
+					z-index  : 10;
+					
+					&:hover {
+						transform : scale(1.1);
+					}
+				}
+			}
+		}
+		
+		button {
+			border     : none;
+			background : none;
+			img{
+				width : 35px;
+				height : auto;
+			}
+			&:active {
+				transform : scale(1.10);
+			}
+		}
+		
+		textarea {
+			font-size: 1.1rem;
+			white-space   : nowrap;
+			width         : 100%;
+			border-radius : 10px;
+			border        : 2px solid black;
+			outline       : 0;
+			background    : $sett_btn_color;
+			resize        : none;
+			//
+			padding       : 5px 10px 5px 5px;
+			//
+			&::placeholder {
+				color     : rgba(0, 0, 0, 0.61);
+				font-size : 1.1rem;
+			}
+		}
+	}
+	
+	.form__container {
+		display        : flex;
+		flex-direction : column;
+		gap            : 5px;
+		//padding        : 15px;
+		
+		
+		.input__wrapper {
+			label {
+				background      : $sett_btn_color;
+				opacity         : 0.5;
+				transition      : .1s;
+				text-decoration : line-through;
+				border          : 2px solid transparent;
+				
+				&:hover {
+					border-color : inherit;
+				}
+			}
+			
+			input[type="checkbox"]:checked + label {
+				background      : $sett_active-btn_color;
+				color           : white;
+				opacity         : 1;
+				text-decoration : none;
+			}
+			
+			input[type="radio"]:checked + label {
+				background      : $sett_active-btn_color;
+				color           : white;
+				opacity         : 1;
+				text-decoration : none;
+			}
+		}
+		
+	}
+	
+}
+
+@keyframes thanosRevers {
+	0% {
+		opacity : 0;
+	}
+	100% {
+		opacity : 1;
+	}
+}

@@ -1,0 +1,28 @@
+// quotes
+.slider-icon {
+	position   : absolute;
+	top        : 50%;
+	margin-top : -16px;
+	cursor     : pointer;
+}
+
+.slide-prev {
+	left             : 20px;
+	background-image : url("/assets/svg/slider-prev.svg");
+}
+
+.slide-next {
+	right            : 20px;
+	background-image : url("/assets/svg/slider-next.svg");
+}
+
+.slide-next, .slide-prev {
+	border-radius: 100px;
+	//&:active{
+	//	animation: hoverArrow 1s ease-in-out;
+	//}
+}
+.active__animation{
+	animation: hoverArrow 0.5s forwards;
+}
+
