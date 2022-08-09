@@ -4,6 +4,7 @@ let props = {
 	maxSlides: 20,
 }
 
-function getRandomNum (max){
-	return Math.floor(Math.random() * max)
-}
+
+
+
+

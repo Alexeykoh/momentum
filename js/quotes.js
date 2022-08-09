@@ -20,3 +20,4 @@ function sendQuote (){
 	quote.textContent = random.text;
 	author.textContent = random.author;
 }
+

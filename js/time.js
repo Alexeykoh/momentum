@@ -1,3 +1,13 @@
+const days = [
+	'Воскресенье',
+	'Понедельник',
+	'Вторник',
+	'Среда',
+	'Четверг',
+	'Пятница',
+	'Суббота'
+];
+
 function showTime() {
 	const time = document.querySelector('.time');
 	const date = new Date();
@@ -9,7 +19,10 @@ showTime();
 function showDate() {
 	const dateSelector = document.querySelector('.date');
 	const date = new Date();
-	const options = {month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', timeZone: 'UTC'};
-	dateSelector.textContent = date.toLocaleDateString ('en-En', options);
+	const options = {month: 'long', day: 'numeric', weekday: 'long', timeZone: 'UTC'};
+
+	let lang = 'RU'
+	if(properties.language.RU){lang = 'RU'}else{lang = 'EN'}
+	dateSelector.textContent = date.toLocaleDateString (lang, options);
 }
 showDate();

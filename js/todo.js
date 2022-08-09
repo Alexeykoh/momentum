@@ -61,6 +61,9 @@ function addToDATA () {
 	setLocal('ToDo',ToDo)
 	setLocal('ToDo_props',ToDo_props)
 	//
+	const board =  document.querySelector('.board')
+	board.scrollTo(0, board.scrollHeight*-1)
+	//
 	console.log (ToDo)
 }
 //

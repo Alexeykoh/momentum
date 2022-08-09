@@ -1,17 +1,7 @@
-// greeting //
-let greetVar = [
-	'night',
-	'morning',
-	'afternoon',
-	'evening',
-	'night'
-]
+
+
 // switch ()
-const date = new Date();
-const hours = date.getHours();
-const timeID= (4/24*hours);
-let greet = greetVar[Math.floor(timeID)];
-document.querySelector('.greeting').innerHTML = `Good ${greet},`;
+document.querySelector('.greeting').innerHTML = `Good ${getGreet()},`;
 //
 
 // name //

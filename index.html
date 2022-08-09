@@ -4,11 +4,7 @@
 	<meta charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link href="assets/favicon.ico" rel="shortcut icon"/>
-	<link rel="stylesheet" href="css/owfont-regular.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
-	<link rel="stylesheet" href="css/volume.css">
-	<link rel="stylesheet" href="css/greeting.css">
-	<link rel="stylesheet" href="css/todo.css">
+	<link rel="stylesheet" href="css/index/index.css">
 	<title>momentum AlexeyKoh</title>
 </head>
 <body>
@@ -56,41 +52,38 @@
 		</ul>
 	</div>
 </div>
-<div class="ToDo__widget">
-	<img class="ToDo__hide_btn" src="assets/Todo/hide.svg" alt="hide-ico">
-	<div class="ToDo__Wrapper">
-		<span class="background"></span>
-		<div class="ToDo">
-			<div class="ToDo__nav">
-				<img class="addListBtn" src="assets/Todo/newList.svg" alt="addTaskBtn-img">
-				<div class="clearTasks__container">
-					<img class="clearTasks" src="assets/Todo/clearAllTasks.svg" alt="menu-ing">
-					<span class="clear-description">Clear all complete tasks</span>
-				</div>
-			</div>
-			<div class="board">
-				<img class="settings_btn" src="assets/Todo/settings.svg" alt="settings-img">
-			</div>
-		</div>
-	</div>
-</div>
+
 <header class="header">
 	<div class="player">
-		<div class="track-name"></div>
-		<div class="player-controls">
-			<button class="play-prev player-icon"></button>
-			<button class="play player-icon"></button>
-			<button class="play-next player-icon"></button>
+		<div class="player__header">
+			<div class="player_control_panel">
+				<div class="mini__wrapper">
+					<img src="assets/svg/player/playlist.svg" alt="playlist_img" class="playlist_btn">
+					<div class="track-name">
+					 keka
+					</div>
+				</div>
+				<div class="player-controls">
+					<button class="play-prev player-icon playerBtn"></button>
+					<button class="play player-icon playerBtn"></button>
+					<button class="play-next player-icon playerBtn"></button>
+				</div>
+			</div>
+			<div class="player__bars">
+				<input id="track-progress" class="track-progress__bar" orient="vertical" type="range" min="0" max="1" step="0.01" value="0" oninput="">
+				<div class="track-time">0:00/0:00</div>
+				<div class="track__volume__wrapper">
+					<img id="volume-mute" class="track__volume" alt="volume-img" src="assets/svg/player/vol_mute.svg">
+					<img id="volume_1-3" class="track__volume" alt="volume-img" src="assets/svg/player/vol_1_3.svg">
+					<img id="volume_2-3" class="track__volume" alt="volume-img" src="assets/svg/player/vol_2_3.svg">
+					<img id="volume_3-3" class="track__volume active" alt="volume-img" src="assets/svg/player/vol_3_3.svg">
+					<input id="track-volume" class="volumeFader__common" orient="vertical" type="range" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this)">
+				</div>
+			</div>
+			
 		</div>
-<!--		<div class="common__control">-->
-<!--			<input class="progress-bar__common" orient="vertical" type="range" min="0" max="0" step="0.01" value="0" oninput="progBar(this)">-->
-<!--			<div class="volumeWrapper__common">-->
-<!--				<img class="volume-btn__common" alt="volume-img" src="assets/svg/player/volUp.svg">-->
-<!--				<img class="volume-btn__common" alt="volume-mutet-img" src="assets/svg/player/volOff.svg">-->
-<!--				<input class="volumeFader__common" orient="vertical" type="range" min="0" max="1" step="0.01" value="0.8" id="volBar-0" oninput="volBar(this)">-->
-<!--			</div>-->
-<!--		</div>-->
 		<ul class="play-list"></ul>
+	
 	</div>
 	<div class="weather">
 		<input type="text" class="city"/>
@@ -117,14 +110,197 @@
 	</div>
 </main>
 <footer class="footer">
-	<button class="change-quote"></button>
-	<div class="quotes">
-		<div class="quote"></div>
-		<div class="author"></div>
+	<div class="ToDo__widget">
+		<img class="ToDo__hide_btn" src="assets/Todo/hide.svg" alt="hide-ico">
+		<div class="ToDo__Wrapper">
+			<span class="background"></span>
+			<div class="ToDo">
+				<div class="ToDo__nav">
+					<img class="addListBtn" src="assets/Todo/newList.svg" alt="addTaskBtn-img">
+					<div class="clearTasks__container">
+						<img class="clearTasks" src="assets/Todo/clearAllTasks.svg" alt="menu-ing">
+						<span class="clear-description">Clear all complete tasks</span>
+					</div>
+				</div>
+				<div class="board">
+					<img class="settings_btn" src="assets/Todo/settings.svg" alt="settings-img">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="quotes__wrapper">
+		<button class="change-quote"></button>
+		<div class="quotes">
+			<div class="quote"></div>
+			<div class="author"></div>
+		</div>
+	</div>
+	<div class="settings__wrapper">
+		<div class="settings__bg"></div>
+		<img src="assets/Todo/settings.svg" alt="settings-btn" class="settings__btn">
+		<div class="settings">
+			<div class="settings__window">
+				<p class="preference">Preference</p>
+				<div class="global__setting">
+					<img src="assets/svg/refresh.svg" alt="refresh" class="refresh">
+				</div>
+				<form class="form-language">
+					<p>Language</p>
+					<div class="form__container">
+						
+						<div class="input__wrapper">
+							<input class="input-language" type="radio" id="language-RU"
+							       name="contact" value="RU" checked onchange="changeLangInProps(this)">
+							<label for="language-RU">RU</label>
+						</div>
+						
+						<div class="input__wrapper">
+							<input class="input-language" type="radio" id="language-EN"
+							       name="contact" value="EN" onchange="changeLangInProps(this)">
+							<label for="language-EN">EN</label>
+						</div>
+					
+					</div>
+				</form>
+				<form class="form-widgets">
+					<p>Widgets</p>
+					<div class="form__container" id="form-widgets-id">
+						
+						<div class="input__wrapper">
+							<input class="input-widgets" type="checkbox" id="widget-choice-1"
+							       name="contact" value="weather" checked onchange="changeWidgetInProps(this)">
+							<label for="widget-choice-1">
+								Weather
+								<img src="assets/svg/widgets/weather_widget.svg" alt="Weather">
+							</label>
+						</div>
+						
+						<div class="input__wrapper">
+							
+							<input class="input-widgets" type="checkbox" id="widget-choice-2"
+							       name="contact" value="player" checked onchange="changeWidgetInProps(this)">
+							<label for="widget-choice-2">
+								Player
+								<img src="assets/svg/widgets/player_widget.svg" alt="Player">
+							</label>
+						</div>
+						
+						<div class="input__wrapper">
+							
+							<input class="input-widgets" type="checkbox" id="widget-choice-3"
+							       name="contact" value="ToDo" checked onchange="changeWidgetInProps(this)">
+							<label for="widget-choice-3">
+								ToDo
+								<img src="assets/svg/widgets/todo_widget.svg" alt="ToDo">
+							</label>
+						</div>
+						
+						<div class="input__wrapper">
+							
+							<input class="input-widgets" type="checkbox" id="widget-choice-4"
+							       name="contact" value="quotes" checked onchange="changeWidgetInProps(this)">
+							<label for="widget-choice-4">
+								Quotes
+								<img src="assets/svg/widgets/quotes_widget.svg" alt="Quotes">
+							</label>
+						</div>
+						
+<!--						<div class="input__wrapper">-->
+<!--							-->
+<!--							<input class="input-widgets" type="checkbox" id="widget-choice-5"-->
+<!--							       name="contact" value="date" checked onchange="changeWidgetInProps(this)">-->
+<!--							<label for="widget-choice-5">-->
+<!--								Date-->
+<!--								<img src="assets/svg/widgets/date_widget.svg" alt="Date">-->
+<!--							</label>-->
+<!--						</div>-->
+					
+					</div>
+				</form>
+				<form class="form-date">
+					<p>Date widget</p>
+					<div class="form__container">
+						
+						<div class="input__wrapper">
+							<input class="input-date" type="checkbox" id="time-choice"
+							       name="contact" value="time" checked onchange="changeDateInProps(this)">
+							<label for="time-choice">time</label>
+						</div>
+						
+						<div class="input__wrapper">
+							<input class="input-date" type="checkbox" id="date-choice"
+							       name="contact" value="date" checked onchange="changeDateInProps(this)">
+							<label for="date-choice">date</label>
+						</div>
+						
+						<div class="input__wrapper">
+							<input class="input-date" type="checkbox" id="greeting-choice"
+							       name="contact" value="greeting" checked onchange="changeDateInProps(this)">
+							<label for="greeting-choice">greeting</label>
+						</div>
+					
+					</div>
+				</form>
+				<form class="form-slider">
+					<p>Slider API</p>
+					<div class="form__container">
+						
+						<div class="input__wrapper">
+							
+							<input class="input-slider" type="radio" id="slider-choice-1"
+							       name="contact" value="GitHub" checked onchange="changeApiInProps(this)">
+							<label for="slider-choice-1">
+								GitHub
+								<img src="assets/svg/api/git-api.svg" alt="GitHub">
+							</label>
+						</div>
+						
+						<div class="input__wrapper">
+							
+							<div class="label__wrapper">
+								<input class="input-slider" type="radio" id="slider-choice-2"
+								       name="contact" value="Unsplash_API" onchange="changeApiInProps(this)">
+								<label for="slider-choice-2">
+									Unsplash API
+									<img src="assets/svg/api/unsplash-api.svg" alt="Unsplash API">
+								</label>
+							</div>
+						</div>
+						
+						<div class="input__wrapper">
+							
+							<input class="input-slider" type="radio" id="slider-choice-3"
+							       name="contact" value="Flickr_API" onchange="changeApiInProps(this)">
+							<label for="slider-choice-3">
+								Flickr API
+								<img src="assets/svg/api/flickr-api.svg" alt="Flickr API">
+							</label>
+						</div>
+					
+					</div>
+				</form>
+				<div class="form-API_tags">
+					<p>API tags</p>
+					<div class="tags__container">
+						<div class="setNewTag">
+							<button class="new-tag__btn">
+								<img src="assets/Todo/add_dtn.svg" alt="tag__btn">
+							</button>
+							<textarea maxlength = "12" name="tag-label" id="tag-label" rows="1"></textarea>
+						</div>
+						<ul id="tags__wrapper">
+							<!--js code-->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </footer>
-<script src="js/props.js"></script>
+
+<script src="js/settings.js"></script>
 <script src="js/localStorage.js"></script>
+<script src="js/translate.js"></script>
 <script src="js/greeting.js"></script>
 <script src="js/time.js"></script>
 <script src="js/name.js"></script>
