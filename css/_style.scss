@@ -27,4 +27,14 @@ body {
 	background            : url("/assets/img/bg.jpg") center/cover, rgba(0, 0, 0, 0.5);
 	background-blend-mode : multiply;
 	transition            : background-image 1s ease-in-out;
+	animation: openBody 1.5s ease-in;
+}
+
+@keyframes openBody {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
