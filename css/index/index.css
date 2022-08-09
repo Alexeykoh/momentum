@@ -25,8 +25,17 @@ body {
   background: url("/assets/img/bg.jpg") center/cover, rgba(0, 0, 0, 0.5);
   background-blend-mode: multiply;
   transition: background-image 1s ease-in-out;
+  animation: openBody 1.5s ease-in;
 }
 
+@keyframes openBody {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -1334,9 +1343,7 @@ form .form__container .input__wrapper input[type=radio]:checked + label, .form-A
   transform: scale(1.12);
 }
 
-.player-icon:active,
-.slider-icon:active,
-.change-quote:active {
+.player-icon:active {
   border: 0;
   outline: 0;
   transform: scale(1.1);

@@ -228,9 +228,7 @@ $cont_max-width     : 625px;
 	transform  : scale(1.12);
 }
 
-.player-icon:active,
-.slider-icon:active,
-.change-quote:active {
+.player-icon:active, {
 	border    : 0;
 	outline   : 0;
 	transform : scale(1.1);

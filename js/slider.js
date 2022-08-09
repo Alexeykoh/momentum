@@ -45,16 +45,17 @@ function setBg () {
 	//
 
 }
-
 function connectAPI (data) {
 	let importData = data;
 	const body     = document.querySelector ('body')
 	const img      = new Image ();
 	//
-	let tagList    = greet + "" + properties.tags.join (',')
+	let tagList    = greet;
 	if (properties.tags.length > 0) {
-		tagList = greet + ", " + properties.tags.join (', ')
+		tagList = properties.tags[getRandomNum(properties.tags.length)]
 	}
+	//
+	console.log (tagList)
 	//
 	// GitHub API
 	if (properties.slider.GitHub) {
@@ -97,6 +98,8 @@ function connectAPI (data) {
 	//
 	// set background
 	img.onload = () => {
+		// body.style.animation = 'thanosRevers 1s'
+		body.style.transition = 'background-image 1s ease-in-out'
 		body.style.backgroundImage = `url(${img.src})`;
 	};
 }
