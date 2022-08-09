@@ -227,6 +227,7 @@ function play_pause (){
 // === // === // === // === // === //
 // play/pause audio from track properties
 function playAudio () {
+	track.pause()
 	trackProps.onAir = true
 	playImg.classList.add ('pause')
 	track.src         = trackProps.src;
