@@ -2,7 +2,7 @@ $cont_max-width     : 625px;
 .player {
 	transition: 1s;
 	&.hidden{
-		transform: translate(-50vw);
+		transform: translate(-100vw);
 		visibility: hidden;
 	}
 	//@media (max-width : $cont_max-width) {

@@ -432,7 +432,7 @@ form .form__container .input__wrapper input[type=radio]:checked + label, .form-A
   }
 }
 .quotes__wrapper.hidden {
-  transform: translate(0, 50vh);
+  transform: translate(0, 100vh);
   visibility: hidden;
 }
 
@@ -1201,7 +1201,7 @@ form .form__container .input__wrapper input[type=radio]:checked + label, .form-A
   gap: 10px;
 }
 .player.hidden {
-  transform: translate(-50vw);
+  transform: translate(-100vw);
   visibility: hidden;
 }
 .player .player__header {
@@ -1471,7 +1471,7 @@ form .form__container .input__wrapper input[type=radio]:checked + label, .form-A
   letter-spacing: -4px;
 }
 .time.hidden {
-  transform: translate(0, -100vh);
+  transform: translate(0, -120vh);
 }
 
 .date {
@@ -1481,7 +1481,7 @@ form .form__container .input__wrapper input[type=radio]:checked + label, .form-A
   margin-bottom: 20px;
 }
 .date.hidden {
-  transform: translate(0, -100vh);
+  transform: translate(0, -120vh);
 }
 
 .greeting-container {
@@ -1511,7 +1511,7 @@ form .form__container .input__wrapper input[type=radio]:checked + label, .form-A
   }
 }
 .greeting.hidden {
-  transform: translate(-100vw, 0);
+  transform: translate(-120vw, 0);
 }
 
 .name {
@@ -1527,7 +1527,7 @@ form .form__container .input__wrapper input[type=radio]:checked + label, .form-A
   outline: 0;
 }
 .name.hidden {
-  transform: translate(100vw, 0);
+  transform: translate(120vw, 0);
 }
 
 .name::placeholder {
@@ -1558,7 +1558,7 @@ form .form__container .input__wrapper input[type=radio]:checked + label, .form-A
   }
 }
 .ToDo__widget.hidden {
-  transform: translate(-50vw);
+  transform: translate(-100vw);
   visibility: hidden;
 }
 
