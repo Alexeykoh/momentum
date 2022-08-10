@@ -310,14 +310,8 @@ function renderProgressBar () {
 		maxTime = convertTime(track.duration)
 	} else {
 		currentTime = 'loading'
-		maxTime = ''
+		maxTime = '...'
 	}
-	//
-	console.log ('')
-	console.log (convertTime(track.currentTime))
-	console.log (currentTime)
-	console.log (maxTime)
-	console.log ('')
 	//
 	document.querySelector('.track-time').innerHTML = currentTime+':'+maxTime
 	//

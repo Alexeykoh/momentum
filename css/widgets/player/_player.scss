@@ -5,9 +5,9 @@ $cont_max-width     : 625px;
 		transform: translate(-50vw);
 		visibility: hidden;
 	}
-	@media (max-width : $cont_max-width) {
-		margin-right : 20px;
-	}
+	//@media (max-width : $cont_max-width) {
+	//	margin-right : 20px;
+	//}
 	width      : 300px;
 	background     : rgba(214, 93, 177, 0.8);
 	border-radius  : 20px;
@@ -38,7 +38,7 @@ $cont_max-width     : 625px;
 				gap            : 10px;
 				@media (max-width : $cont_max-width) {
 					//flex-direction : column;
-					gap: unset;
+					gap: 10px;
 					justify-content: space-between;
 					width : 100%;
 				}
@@ -56,6 +56,7 @@ $cont_max-width     : 625px;
 				.track-name {
 					font-size : .9rem;
 					color     : black;
+					width : 100%;
 					@media (max-width : $cont_max-width) {
 						padding : 5px 10px;
 						background: rgba(254, 221, 244, 0.43);
@@ -205,8 +206,7 @@ $cont_max-width     : 625px;
 }
 
 .player-icon,
-.slider-icon,
-.change-quote{
+.slider-icon,{
 	width               : 35px;
 	height              : 35px;
 	background-size     : 35px 35px;

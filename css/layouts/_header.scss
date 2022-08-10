@@ -6,9 +6,10 @@
 	//height          : 30vh;
 	min-height      : 220px;
 	padding         : 20px;
-	//flex-wrap: wrap;
-	//@media (max-width : 520px){
-	//	align-items     : center;
-	//	justify-content: center;
-	//}
+	flex-wrap: wrap;
+	@media (max-width : 520px){
+		align-items     : center;
+		justify-content: center;
+		gap : 30px;
+	}
 }
