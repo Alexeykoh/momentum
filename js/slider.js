@@ -45,7 +45,7 @@ function setBg () {
 	//
 
 }
-function connectAPI (data) {
+async function connectAPI (data) {
 	let importData = data;
 	const body     = document.querySelector ('body')
 	const img      = new Image ();
@@ -72,7 +72,7 @@ function connectAPI (data) {
 		    client_id   = 'NPMe2vW-WJ_bpBgPsh4Os0PoDGKPlKI9dcg-V793pp0',
 		    fetchURL    = `https://api.unsplash.com/photos/random?${orientation}=landscape&query=${query}&client_id=${client_id}`
 		//
-		fetch (fetchURL)
+		await fetch (fetchURL)
 			.then (res => res.json ())
 			.then (data => {
 				// console.log (data)
@@ -87,7 +87,7 @@ function connectAPI (data) {
 		    api_key  = 'a3ce305b786cb95b4e45914adc19d186',
 		    fetchURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api_key}&tags=${tags}&extras=${extras}&format=json&nojsoncallback=1`
 		//
-		fetch (fetchURL)
+		await fetch (fetchURL)
 			.then (res => res.json ())
 			.then (data => {
 				maxSliders = data.photos.photo.length
