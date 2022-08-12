@@ -1,22 +1,4 @@
-function getRandomNum (max){
-	return Math.floor(Math.random() * max)
-}
 
-// greeting //
-function getGreet(){
-	let greetVar = [
-		'night',
-		'morning',
-		'afternoon',
-		'evening',
-		'night'
-	]
-	const date = new Date();
-	const hours = date.getHours();
-	const timeID= (4/24*hours);
-	return greetVar[Math.floor (timeID)]
-}
-const greet = getGreet()
 
 document.querySelector('.settings__btn').addEventListener('click',function (){
 	document.querySelector('.settings__window').classList.add('active')
@@ -30,10 +12,20 @@ document.querySelector('.settings__bg').addEventListener('click',function (){
 	document.querySelector('.settings__bg').classList.remove('active')
 })
 
+// === // === // === // === // === //
+//  properties data structure
+function searchResult(way){
+	console.log ('way => ',way)
+	for (const wayKey in way) {
+		if (way[wayKey]){
+			return wayKey
+		}
+	}
+}
 let properties = {
 	language: {
-		RU: true,
-		EN: false,
+		RU: false,
+		EN: true,
 	},
 	widgets: {
 		weather: true,
@@ -52,7 +44,7 @@ let properties = {
 		Unsplash_API: false,
 		Flickr_API: false,
 	},
-	tags: [greet],
+	tags: [],
 }
 if (localStorage.getItem('properties') === null){
 	localStorage.setItem('properties', JSON.stringify(properties));
@@ -60,6 +52,32 @@ if (localStorage.getItem('properties') === null){
 	properties = JSON.parse(localStorage.getItem('properties'))
 	renderSettings()
 }
+
+
+// === // === // === // === // === //
+// randomizer
+function getRandomNum (max){
+	return Math.floor(Math.random() * max)
+}
+
+// === // === // === // === // === //
+// greeting
+function getGreet(){
+	let greetVar = [
+		'night',
+		'morning',
+		'afternoon',
+		'evening',
+		'night'
+	]
+	const date = new Date();
+	const hours = date.getHours();
+	const timeID= (4/24*hours);
+	return greetVar[Math.floor (timeID)]
+}
+const greet = getGreet()
+
+
 
 function changeLangInProps(lang){
 	for (const key in properties.language) {
@@ -69,6 +87,8 @@ function changeLangInProps(lang){
 	localStorage.setItem('properties', JSON.stringify(properties));
 	unparseWeather()
 	showDate()
+	sendQuote (true)
+	switchGreeting()
 }
 function changeWidgetInProps(widget){
 	properties.widgets[widget.value] = widget.checked
@@ -118,20 +138,22 @@ function renderSettings (){
 const settings__window = document.querySelector('.settings__window')
 const newTagButton = document.querySelector('.new-tag__btn')
 const newTagTextArea = document.querySelector('#tag-label')
-newTagButton.addEventListener('click',createNewTag)
+newTagButton.addEventListener('click',()=>{
+	createNewTag(newTagTextArea.value)
+})
 newTagTextArea.addEventListener('keypress',function (key){
 	if (key.key === 'Enter'){
-		createNewTag()
+		createNewTag(newTagTextArea.value)
 		key.preventDefault()
 	}
 })
 //
-function createNewTag(){
-	if (newTagTextArea.value !== '' && !properties.tags.includes(newTagTextArea.value)){
-		properties.tags.push(newTagTextArea.value)
-		renderNewTag(newTagTextArea.value)
+function createNewTag(tagName){
+	console.log (tagName)
+	if (tagName !== '' && !properties.tags.includes(tagName)){
+		properties.tags.push(tagName)
+		renderNewTag(tagName)
 	}
-	// console.log (properties.tags,properties.tags.length)
 	newTagTextArea.value = '';
 	newTagTextArea.innerHTML = '';
 	newTagTextArea.focus()
@@ -141,8 +163,8 @@ function createNewTag(){
 	//
 	document.querySelectorAll('.removeTagSVG').forEach((a)=>{
 		a.addEventListener('click',removeTag)
-		// console.log (a)
 	})
+
 }
 //
 function renderNewTag(id){
@@ -165,18 +187,16 @@ function renderNewTag(id){
 
 function removeTag(){
 	const id = this.id.replace (/removeTag-/ig, '')
-	// console.log ('remove tag ',id)
 	document.getElementById(`tagName-${id}`).remove()
 	const tagArr = properties.tags;
 	properties.tags.splice(tagArr.indexOf(id), 1)
 	localStorage.setItem('properties', JSON.stringify(properties));
-	// console.log (properties.tags,properties.tags.length)
 }
 
 
 function show_hide_Widgets (type,input) {
-	console.log ('type / ',type)
-	console.log ('input / ',input.value)
+	// console.log ('type / ',type)
+	// console.log ('input / ',input.value)
 	//
 	if (type === 'date'){
 		const dateDOM = document.querySelector('.date')

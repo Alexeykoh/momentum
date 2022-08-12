@@ -1,4 +1,9 @@
 function renderList (list_ID) {
+	console.log (list_ID,this)
+	const clear__description = document.querySelector('.clear-description')
+	let descriptionLang = localization.ToDo.clearTask[searchResult(properties.language)]
+	clear__description.textContent = descriptionLang
+	//
 	const board = document.querySelector ('.board')
 	const list  = document.createElement ('div')
 	list.classList.add ('list')
@@ -27,7 +32,8 @@ function renderList (list_ID) {
 	list__name.setAttribute ('rows', `1`);
 	list__name.setAttribute ('maxlength', '19');
 	// list__name.setAttribute ('placeholder', `${ToDo[findListID_DATA(list_ID)].list_NAME}`);
-	list__name.setAttribute ('placeholder', `[new list]`);
+	let taskList = localization.ToDo.list[searchResult(properties.language)]
+	list__name.setAttribute ('placeholder', `[${taskList}]`);
 	list__name.setAttribute ('onchange', `editListName(${list_ID},this)`);
 	if (!ToDo[findListID_DATA(list_ID)].list_NAME.split(' ').includes('ToDo:')){
 		list__name.value = ToDo[findListID_DATA(list_ID)].list_NAME
@@ -146,7 +152,8 @@ function renderTask (list_ID, placeholderImport) {
 	task__content.setAttribute ('maxlength', `30`);
 	task__content.value = ToDo[findListID_DATA (list_ID)].tasks_ARR[findTaskID_DATA (list_ID, placeholder)].task_CONTAINER
 	// task__content.setAttribute ('placeholder', `Task #${placeholder.slice(-1)}`);
-	task__content.setAttribute ('placeholder', `[new task]`);
+	let taskText = localization.ToDo.task[searchResult(properties.language)]
+	task__content.setAttribute ('placeholder', `[${taskText}]`);
 	task__content.setAttribute ('onchange', `editTask(${list_ID},'${placeholder}',this)`);
 	task.appendChild (task__content)
 	//

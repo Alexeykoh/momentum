@@ -1,7 +1,12 @@
 
 
 // switch ()
-document.querySelector('.greeting').innerHTML = `Good ${getGreet()},`;
+switchGreeting()
+function switchGreeting(){
+	let greeting = (localization.greeting[getGreet()][searchResult(properties.language)])
+	document.querySelector('.greeting').innerHTML = `${greeting},`;
+
+}
 //
 
 // name //

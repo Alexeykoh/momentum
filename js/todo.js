@@ -30,15 +30,17 @@ if(localStorage.getItem('ToDo') !== null){
 	memoryRender()
 }
 //
-if (ToDo.length === 0){
-	addToDATA ()
-	renderList(ToDo_props.last_list_ID)
-}
+
+// if (ToDo.length === 0){
+// 	addToDATA ()
+// 	renderList(ToDo_props.last_list_ID)
+// }
 //
 const newListBtn = document.querySelector ('.addListBtn')
 newListBtn.addEventListener ('click', function () {
 	addToDATA ()
 	renderList(ToDo_props.last_list_ID)
+	console.log (ToDo,ToDo,length)
 })
 //
 
@@ -210,7 +212,6 @@ function memoryRender (){
 	for (const memoKey in ToDo) {
 		renderList(ToDo[memoKey].list_ID)
 		for (const tasks_ARR_Key in ToDo[memoKey].tasks_ARR) {
-			// console.log (ToDo[memoKey].tasks_ARR[tasks_ARR_Key].task_ID)
 			let placeholder = ToDo[memoKey].tasks_ARR[tasks_ARR_Key].task_ID
 			renderTask(ToDo[memoKey].list_ID,placeholder)
 		}

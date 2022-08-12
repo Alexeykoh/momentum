@@ -51,17 +51,17 @@ async function connectAPI (data) {
 	const img      = new Image ();
 	//
 	let tagList    = greet;
+	// createNewTag(greet)
 	if (properties.tags.length > 0) {
 		tagList = properties.tags[getRandomNum(properties.tags.length)]
 	}
-	//
-	console.log (tagList)
 	//
 	// GitHub API
 	if (properties.slider.GitHub) {
 		maxSliders = 20
 		console.log ('GitHub')
-		img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${data.greet_}/${data.number_}.jpg`
+		// img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${data.greet_}/${data.number_}.jpg`
+		img.src = `https://raw.githubusercontent.com/Alexeykoh/stage1-tasks/assets/images/${data.greet_}/${data.number_}.jpg`
 	}
 	//
 	// Unsplash_API
@@ -91,7 +91,6 @@ async function connectAPI (data) {
 			.then (res => res.json ())
 			.then (data => {
 				maxSliders = data.photos.photo.length
-				// console.log (importData.number_*1)
 				img.src    = data.photos.photo[importData.number_ * 1].url_h
 			});
 	}

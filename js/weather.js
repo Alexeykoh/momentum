@@ -47,8 +47,20 @@ function renderWeather (){
 
 		temperature.textContent = `${Math.round(weatherData.main.temp)}°C`;
 		weatherDescription.textContent = weatherData.weather[0].description;
-		wind.textContent =`Скорость ветра: ${weatherData.wind.speed}`;
-		humidity.textContent = `Влажность: ${weatherData.main.humidity}`;
+		//
+		let windLang;
+		let humidityLang;
+		if(properties.language.RU){
+			windLang = localization.weather.wind.RU
+			humidityLang = localization.weather.humidity.RU
+		}
+		if(properties.language.EN){
+			windLang = localization.weather.wind.EN
+			humidityLang = localization.weather.humidity.EN
+		}
+		//
+		wind.textContent =`${windLang}: ${weatherData.wind.speed}`;
+		humidity.textContent = `${humidityLang}: ${weatherData.main.humidity}%`;
 	} else {
 		alert('jopa')
 		city.value = 'Minsk'
