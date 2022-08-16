@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link href="assets/favicon.ico" rel="shortcut icon"/>
 	<link rel="stylesheet" href="css/index/index.css">
-	<title>momentum AlexeyKoh</title>
+	<title>AlexeyKoh</title>
 </head>
 <body>
 
@@ -16,9 +16,7 @@
 			<div class="player_control_panel">
 				<div class="mini__wrapper">
 					<img src="assets/svg/player/playlist.svg" alt="playlist_img" class="playlist_btn">
-					<div class="track-name">
-					 keka
-					</div>
+					<div class="track-name"></div>
 				</div>
 				<div class="player-controls">
 					<button class="play-prev player-icon playerBtn"></button>
@@ -39,7 +37,7 @@
 			</div>
 			
 		</div>
-		<ul class="play-list"></ul>
+		<ul class="play-list active"></ul>
 	
 	</div>
 	<div class="weather">
@@ -94,20 +92,16 @@
 	</div>
 	<div class="settings__wrapper">
 		<div class="settings__bg"></div>
-		<img src="assets/Todo/settings.svg" alt="settings-btn" class="settings__btn">
 		<div class="settings">
 			<div class="settings__window">
-				<p class="preference">Preference</p>
-<!--				<div class="global__setting">-->
-<!--					<img src="assets/svg/refresh.svg" alt="refresh" class="refresh">-->
-<!--				</div>-->
+				<p class="sett__title" id="title-main">PREFERENCE</p>
 				<form class="form-language">
-					<p>Language</p>
+					<p class="sett__title" id="title-language">LANGUAGE</p>
 					<div class="form__container">
 						
 						<div class="input__wrapper">
 							<input class="input-language" type="radio" id="language-RU"
-							       name="contact" value="RU" checked onchange="changeLangInProps(this)">
+							       name="contact" value="RU" onchange="changeLangInProps(this)">
 							<label for="language-RU">RU</label>
 						</div>
 						
@@ -120,124 +114,122 @@
 					</div>
 				</form>
 				<form class="form-widgets">
-					<p>Widgets</p>
+					<p class="sett__title" id="title-widgets">WIDGETS</p>
 					<div class="form__container" id="form-widgets-id">
 						
 						<div class="input__wrapper">
-							<input class="input-widgets" type="checkbox" id="widget-choice-1"
+							<input class="input-widgets" type="checkbox" id="input-weather"
 							       name="contact" value="weather" checked onchange="changeWidgetInProps(this)">
-							<label for="widget-choice-1">
-								Weather
-								<img src="assets/svg/widgets/weather_widget.svg" alt="Weather">
+							<label for="input-weather" class="sett__sub-title" id="label-weather">
+								WEATHER
+								<img class="sett_svg" src="assets/svg/widgets/weather_widget.svg" alt="Weather">
 							</label>
 						</div>
 						
 						<div class="input__wrapper">
 							
-							<input class="input-widgets" type="checkbox" id="widget-choice-2"
+							<input class="input-widgets" type="checkbox" id="input-player"
 							       name="contact" value="player" checked onchange="changeWidgetInProps(this)">
-							<label for="widget-choice-2">
-								Player
-								<img src="assets/svg/widgets/player_widget.svg" alt="Player">
+							<label for="input-player" class="sett__sub-title" id="label-player">
+								PLAYER
+								<img class="sett_svg" src="assets/svg/widgets/player_widget.svg" alt="Player">
 							</label>
 						</div>
 						
 						<div class="input__wrapper">
 							
-							<input class="input-widgets" type="checkbox" id="widget-choice-3"
+							<input class="input-widgets" type="checkbox" id="input-ToDo"
 							       name="contact" value="ToDo" checked onchange="changeWidgetInProps(this)">
-							<label for="widget-choice-3">
-								ToDo
-								<img src="assets/svg/widgets/todo_widget.svg" alt="ToDo">
+							<label for="input-ToDo" class="sett__sub-title" id="label-todo">
+								TODO
+								<img class="sett_svg" src="assets/svg/widgets/todo_widget.svg" alt="ToDo">
 							</label>
 						</div>
 						
 						<div class="input__wrapper">
 							
-							<input class="input-widgets" type="checkbox" id="widget-choice-4"
+							<input class="input-widgets" type="checkbox" id="input-quotes"
 							       name="contact" value="quotes" checked onchange="changeWidgetInProps(this)">
-							<label for="widget-choice-4">
-								Quotes
-								<img src="assets/svg/widgets/quotes_widget.svg" alt="Quotes">
+							<label for="input-quotes" class="sett__sub-title" id="label-quotes">
+								QUOTES
+								<img class="sett_svg" src="assets/svg/widgets/quotes_widget.svg" alt="Quotes">
 							</label>
 						</div>
-						
-<!--						<div class="input__wrapper">-->
-<!--							-->
-<!--							<input class="input-widgets" type="checkbox" id="widget-choice-5"-->
-<!--							       name="contact" value="date" checked onchange="changeWidgetInProps(this)">-->
-<!--							<label for="widget-choice-5">-->
-<!--								Date-->
-<!--								<img src="assets/svg/widgets/date_widget.svg" alt="Date">-->
-<!--							</label>-->
-<!--						</div>-->
-					
 					</div>
 				</form>
 				<form class="form-date">
-					<p>Date widget</p>
+					<p class="sett__title" id="title-dateWidget">DATE WIDGET</p>
 					<div class="form__container">
 						
 						<div class="input__wrapper">
-							<input class="input-date" type="checkbox" id="time-choice"
+							<input class="input-date" type="checkbox" id="input-time"
 							       name="contact" value="time" checked onchange="changeDateInProps(this)">
-							<label for="time-choice">time</label>
+							<label for="input-time" class="sett__sub-title" id="label-time">
+								TIME
+								<img class="sett_svg" src="assets/svg/widgets/time_widget.svg" alt="time">
+							</label>
 						</div>
 						
 						<div class="input__wrapper">
-							<input class="input-date" type="checkbox" id="date-choice"
+							<input class="input-date" type="checkbox" id="input-date"
 							       name="contact" value="date" checked onchange="changeDateInProps(this)">
-							<label for="date-choice">date</label>
+							<label for="input-date" class="sett__sub-title" id="label-date">
+								DATE
+								<img class="sett_svg" src="assets/svg/widgets/date_widget.svg" alt="time">
+							</label>
 						</div>
 						
 						<div class="input__wrapper">
-							<input class="input-date" type="checkbox" id="greeting-choice"
+							<input class="input-date" type="checkbox" id="input-greeting"
 							       name="contact" value="greeting" checked onchange="changeDateInProps(this)">
-							<label for="greeting-choice">greeting</label>
+							<label for="input-greeting" class="sett__sub-title" id="label-greeting">
+								GREETING
+								<img class="sett_svg" src="assets/svg/widgets/greet_widget.svg" alt="time">
+							</label>
 						</div>
 					
 					</div>
 				</form>
 				<form class="form-slider">
-					<p>Slider API</p>
+					<p class="sett__title" id="title-imageSource">IMAGE SOURCE</p>
 					<div class="form__container">
 						
 						<div class="input__wrapper">
 							
-							<input class="input-slider" type="radio" id="slider-choice-1"
+							<input class="input-slider" type="radio" id="label-GitHub"
 							       name="contact" value="GitHub" checked onchange="changeApiInProps(this)">
-							<label for="slider-choice-1">
+							<label for="label-GitHub" class="sett__sub-title">
 								GitHub
-								<img src="assets/svg/api/git-api.svg" alt="GitHub">
+								<img class="sett_svg" src="assets/svg/api/git-api.svg" alt="GitHub">
 							</label>
 						</div>
 						
 						<div class="input__wrapper">
 							
 							<div class="label__wrapper">
-								<input class="input-slider" type="radio" id="slider-choice-2"
+								<input class="input-slider" type="radio" id="label-Unsplash_API"
 								       name="contact" value="Unsplash_API" onchange="changeApiInProps(this)">
-								<label for="slider-choice-2">
+								<label for="label-Unsplash_API" class="sett__sub-title">
 									Unsplash API
-									<img src="assets/svg/api/unsplash-api.svg" alt="Unsplash API">
+									<img class="sett_svg" src="assets/svg/api/unsplash-api.svg" alt="Unsplash API">
 								</label>
 							</div>
 						</div>
 						
 						<div class="input__wrapper">
 							
-							<input class="input-slider" type="radio" id="slider-choice-3"
+							<input class="input-slider" type="radio" id="label-Flickr_API"
 							       name="contact" value="Flickr_API" onchange="changeApiInProps(this)">
-							<label for="slider-choice-3">
+							<label for="label-Flickr_API" class="sett__sub-title">
 								Flickr API
-								<img src="assets/svg/api/flickr-api.svg" alt="Flickr API">
+								<img class="sett_svg" src="assets/svg/api/flickr-api.svg" alt="Flickr API">
 							</label>
 						</div>
 					
 					</div>
 				</form>
 				<div class="form-API_tags">
-					<p>image tags</p>
+					<p class="sett__title" id="title-imageTags">IMAGE TAGS</p>
 					<div class="tags__container">
 						<div class="setNewTag">
 							<button class="new-tag__btn">
@@ -252,13 +244,33 @@
 				</div>
 			</div>
 		</div>
+		<ul class="rss__wrapper">
+			<li class="rss-item">
+				<a target="_blank" href="https://github.com/Alexeykoh?tab=repositories" class="footer__link">
+					<img src="assets/svg/git-ico.svg" alt="git" class="ico" id="git_ico">
+				</a>
+			</li>
+			<li class="rss-item">
+				<p>2022</p>
+			</li>
+			<li class="rss-item">
+				<a target="_blank" href="https://rs.school/js/" class="footer__link">
+					<img src="assets/svg/rs_school_js.svg" alt="rss" class="footer__img ico" id="rss-ico">
+				</a>
+			</li>
+		</ul>
+		<img src="assets/Todo/settings.svg" alt="settings-btn" class="settings__btn">
+		
+	</div>
+	<div id="warning__tag">
 	</div>
 </footer>
 
+
 <script src="js/translate.js"></script>
+<script src="js/colorPalett.js"></script>
 <script src="js/settings.js"></script>
 <script src="js/localStorage.js"></script>
-<script src="js/greeting.js"></script>
 <script src="js/time.js"></script>
 <script src="js/name.js"></script>
 <script src="js/weather.js"></script>
@@ -267,7 +279,6 @@
 <script src="js/slider.js"></script>
 <script src="js/todo_render.js"></script>
 <script src="js/todo.js"></script>
-
 
 </body>
 </html>

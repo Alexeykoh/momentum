@@ -17,12 +17,37 @@
 }
 
 .slide-next, .slide-prev {
-	border-radius: 100px;
+	border-radius : 100px;
 	//&:active{
 	//	animation: hoverArrow 1s ease-in-out;
 	//}
 }
-.active__animation{
-	animation: hoverArrow 0.5s forwards;
+
+.active__animation {
+	animation : hoverArrow 0.5s forwards;
 }
 
+#warning__tag {
+	position        : fixed;
+	top             : 20px;
+	right           : 20px;
+	padding         : 20px 40px;
+	font-size       : 1.2rem;
+	color           : black;
+	background      : rgba(255, 48, 48, 0.7);
+	backdrop-filter : blur(3px);
+	border-radius   : 15px;
+	z-index         : 2000;
+	//
+	transition      : .8s ease-in-out;
+	//
+	transform       : translate(0, -200vh);
+	visibility      : hidden;
+	user-select     : none;
+	
+	&.active {
+		visibility : visible;
+		transform  : translate(0, 0);
+		
+	}
+}

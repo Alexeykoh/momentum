@@ -328,3 +328,11 @@ allProgBar.addEventListener ('input', function () {
 	trackProps.currentTime = this.value
 	allProgBar.style.background = `linear-gradient(to right, #FFC75F 0%, #FFC75F ${percents}%, black ${percents}%, black 100%)`
 })
+
+
+// === // === // === // === // === //
+// open playlist
+const openPlaylist = document.querySelector('.playlist_btn')
+openPlaylist.addEventListener('click', function (){
+	document.querySelector('.play-list').classList.toggle('active')
+})

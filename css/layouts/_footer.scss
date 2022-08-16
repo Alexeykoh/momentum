@@ -1,4 +1,5 @@
 .footer {
+	transition: .5s ease-in-out;
 	display         : flex;
 	flex-direction  : row;
 	justify-content : space-between;
@@ -14,4 +15,31 @@
 		gap : 25px;
 		flex-wrap: wrap;
 	}
+}
+
+.rss__wrapper{
+	@media (max-width : 765px){
+		order: 2;
+	}
+	font-size: 1.5rem;
+	padding : 0 10px;
+	background: $footer_bg_color;
+	backdrop-filter: blur(3px);
+	color: $footer_text_color;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap : 10px;
+	list-style: none;
+	img{
+		filter: invert(1);
+		width : 50px;
+		height : 50px;
+	}
+}
+
+#git_ico{
+	width : 35px;
+	height : 35px;
 }

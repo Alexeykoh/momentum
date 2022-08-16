@@ -148,8 +148,8 @@ function renderTask (list_ID, placeholderImport) {
 	task__content.setAttribute ('id', `textarea${placeholder}`);
 	task__content.setAttribute ('name', `task__content`);
 	task__content.setAttribute ('cols', `5`);
-	task__content.setAttribute ('rows', `2`);
-	task__content.setAttribute ('maxlength', `30`);
+	task__content.setAttribute ('rows', ``);
+	task__content.setAttribute ('maxlength', ``);
 	task__content.value = ToDo[findListID_DATA (list_ID)].tasks_ARR[findTaskID_DATA (list_ID, placeholder)].task_CONTAINER
 	// task__content.setAttribute ('placeholder', `Task #${placeholder.slice(-1)}`);
 	let taskText = localization.ToDo.task[searchResult(properties.language)]
@@ -175,14 +175,7 @@ function renderTask (list_ID, placeholderImport) {
 	//
 }
 
-function hexToRgb(hex) {
-	let bigint = parseInt(hex, 16);
-	let r = (bigint >> 16) & 255;
-	let g = (bigint >> 8) & 255;
-	let b = bigint & 255;
 
-	return r + "," + g + "," + b;
-}
 
 // console.log (random_rgba(0,0.6))
 function random_rgba (list,alfa) {

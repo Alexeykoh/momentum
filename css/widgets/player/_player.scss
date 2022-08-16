@@ -1,25 +1,30 @@
-$cont_max-width     : 625px;
+$cont_max-width : 625px;
 .player {
-	transition: 1s;
-	&.hidden{
-		transform: translate(-100vw);
-		visibility: hidden;
+	transition      : 1s;
+	
+	&.hidden {
+		transform  : translate(-200vw);
+		visibility : hidden;
 	}
+	
 	//@media (max-width : $cont_max-width) {
 	//	margin-right : 20px;
 	//}
-	width      : 300px;
-	background     : rgba(214, 93, 177, 0.8);
-	border-radius  : 20px;
-	display        : flex;
-	flex-direction : column;
-	align-items    : center;
-	padding        : 10px 15px;
-	gap            : 10px;
+	width           : 300px;
+	background      : $player_bd_color;
+	backdrop-filter : blur(3px);
+	border-radius   : $glob_borderRadius;
+	display         : flex;
+	flex-direction  : column;
+	align-items     : center;
+	padding         : 10px 15px;
+	gap             : 10px;
+	overflow: hidden;
 	
 	.player__header {
 		width : 100%;
-		
+		z-index: 5;
+		overflow: hidden;
 		
 		.player_control_panel {
 			width           : 100%;
@@ -38,29 +43,29 @@ $cont_max-width     : 625px;
 				gap            : 10px;
 				@media (max-width : $cont_max-width) {
 					//flex-direction : column;
-					gap: 10px;
-					justify-content: space-between;
-					width : 100%;
+					gap             : 10px;
+					justify-content : space-between;
+					width           : 100%;
 				}
 				
 				.playlist_btn {
 					width  : 35px;
 					height : 35px;
 					@media (max-width : $cont_max-width) {
-						align-self: start;
-						width  : 25px;
-						height : 25px;
+						align-self : start;
+						width      : 25px;
+						height     : 25px;
 					}
 				}
 				
 				.track-name {
-					font-size : .9rem;
-					color     : black;
-					width : 100%;
+					font-size : 1rem;
+					color     : $player_text_color;
+					width     : 100%;
 					@media (max-width : $cont_max-width) {
-						padding : 5px 10px;
-						background: rgba(254, 221, 244, 0.43);
-						border-radius: 16px;
+						padding       : 5px 10px;
+						background    : rgba(254, 221, 244, 0.43);
+						border-radius : $glob_borderRadius;
 						margin-bottom : 10px;
 					}
 				}
@@ -73,9 +78,9 @@ $cont_max-width     : 625px;
 				
 				.play {
 					@media (max-width : $cont_max-width) {
-						width  : 50px;
-						height : 50px;
-						background-size     : 50px 50px;
+						width           : 50px;
+						height          : 50px;
+						background-size : 50px 50px;
 					}
 					width            : 35px;
 					height           : 35px;
@@ -104,7 +109,7 @@ $cont_max-width     : 625px;
 				gap            : 5px;
 				align-items    : start;
 			}
-			width : 100%;
+			width           : 100%;
 			display         : flex;
 			flex-direction  : row;
 			align-items     : center;
@@ -115,7 +120,7 @@ $cont_max-width     : 625px;
 			}
 			
 			.track-time {
-				color     : black;
+				color     : $player_text_color;
 				font-size : .9rem;
 				padding   : 0 10px 0 5px;
 				@media (max-width : $cont_max-width) {
@@ -124,14 +129,15 @@ $cont_max-width     : 625px;
 			}
 			
 			.track__volume__wrapper {
-				width : 100%;
+				width           : 100%;
 				display         : flex;
 				flex-direction  : row;
 				align-items     : center;
 				justify-content : space-between;
-				transition: .3s ease-in-out;
+				transition      : .3s ease-in-out;
 				
 				.track__volume {
+					filter: invert(1);
 					display : none;
 				}
 				
@@ -145,11 +151,17 @@ $cont_max-width     : 625px;
 	}
 	
 	.play-list {
-		background     : rgba(254, 221, 244, 0.43);
-		border-radius  : 16px;
+		z-index: 0;
+		transition: .5s ease-in-out;
+		display: none;
+		&.active{
+			display: flex;
+		}
+		
+		background     : $glob_secondary_color;
+		border-radius  : $glob_borderRadius;
 		padding        : 10px 15px;
 		width          : 100%;
-		display        : flex;
 		flex-direction : column;
 		align-items    : start;
 		gap            : 5px;
@@ -158,7 +170,7 @@ $cont_max-width     : 625px;
 			transition     : .1s ease-out;
 			
 			&.active {
-				background : #FFC75F;
+				background : $player_selectedTrack_color;
 			}
 			
 			&:hover {
@@ -171,7 +183,7 @@ $cont_max-width     : 625px;
 			gap            : 10px;
 			width          : 100%;
 			padding        : 5px 5px;
-			border-radius  : 12px;
+			border-radius  : $glob_borderRadius;
 			
 			.track-item__name {
 				font-size : 1rem;
@@ -191,22 +203,23 @@ $cont_max-width     : 625px;
 			}
 			
 			.track-item__name {
-				color : black;
+				color : $player_text_color;
 			}
 		}
 	}
 }
+
 .player-icon,
-.slider-icon,{
+.slider-icon, {
 	@media (max-width : $cont_max-width) {
-		width  : 55px;
-		height : 55px;
-		background-size     : 55px 55px;
+		width           : 55px;
+		height          : 55px;
+		background-size : 55px 55px;
 	}
 }
 
 .player-icon,
-.slider-icon,{
+.slider-icon, {
 	width               : 35px;
 	height              : 35px;
 	background-size     : 35px 35px;

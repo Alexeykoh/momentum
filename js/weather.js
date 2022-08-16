@@ -4,8 +4,12 @@
 //
 const city = document.querySelector('.city')
 city.addEventListener('change',function (){
-	setLocalStorage('city',city.value)
-	unparseWeather()
+	if (city.value === ''){
+		weatherError()
+	} else {
+		setLocalStorage('city',city.value)
+		unparseWeather()
+	}
 })
 if (localStorage.getItem('city') !== city.value){
 	city.value = getLocalStorage('city')
@@ -39,32 +43,32 @@ function unparseWeather(){
 }
 
 function renderWeather (){
+	const weatherErrorDIV = document.querySelector('.weather-error')
 	if (weatherData.cod !== '404'){
 		if(weatherIcon.classList[2]!==undefined){
 			weatherIcon.classList.remove(weatherIcon.classList[2])
 		}
 		weatherIcon.classList.add(`owf-${weatherData.weather[0].id}`);
 
-		temperature.textContent = `${Math.round(weatherData.main.temp)}°C`;
+		//
+		let windLang = localization.weather.wind[searchResult (properties.language)],
+			humidityLang = localization.weather.humidity[searchResult (properties.language)],
+			speedLang = localization.weather.speed[searchResult (properties.language)];
+		//
 		weatherDescription.textContent = weatherData.weather[0].description;
-		//
-		let windLang;
-		let humidityLang;
-		if(properties.language.RU){
-			windLang = localization.weather.wind.RU
-			humidityLang = localization.weather.humidity.RU
-		}
-		if(properties.language.EN){
-			windLang = localization.weather.wind.EN
-			humidityLang = localization.weather.humidity.EN
-		}
-		//
-		wind.textContent =`${windLang}: ${weatherData.wind.speed}`;
-		humidity.textContent = `${humidityLang}: ${weatherData.main.humidity}%`;
+		temperature.textContent = `${Math.round(weatherData.main.temp)}°C`;
+		wind.textContent =`${windLang}: ${Math.round(weatherData.wind.speed)}, ${speedLang}`;
+		humidity.textContent = `${humidityLang}: ${Math.round(weatherData.main.humidity)}%`;
+		weatherErrorDIV.innerHTML = ''
 	} else {
-		alert('jopa')
-		city.value = 'Minsk'
-		setLocalStorage('city',city.value)
-		unparseWeather()
+		weatherError()
 	}
+}
+function weatherError (){
+	const weatherErrorDIV = document.querySelector('.weather-error')
+	weatherDescription.textContent = '';
+	temperature.textContent = '';
+	wind.textContent = ''
+	humidity.textContent = ''
+	weatherErrorDIV.textContent = localization.weather.error[searchResult(properties.language)]
 }

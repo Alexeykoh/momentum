@@ -7,6 +7,7 @@
 	box-sizing : border-box;
 	margin     : 0;
 	padding    : 0;
+	transition: .5s ease-in-out;
 }
 body {
 	display: flex;
@@ -28,6 +29,7 @@ body {
 	background            : url("/assets/img/bg.jpg") center/cover, rgba(0, 0, 0, 0.5);
 	background-blend-mode : multiply;
 	transition            : background-image 1s ease-in-out;
+	//transition: .5s ease-in-out;
 	animation: openBody 1.5s ease-in;
 	@media (max-width : 520px){
 		gap : 25px;

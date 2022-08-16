@@ -1,0 +1,45 @@
+//
+// global
+$glob_main_color            : rgba(15, 15, 15, 0.6);
+$glob_secondary_color       : rgba(254, 221, 244, 0.1);
+
+$glob_borderRadius          : 5px;
+
+// settings
+$sett_bg_color              : $glob_main_color;
+$sett_wrapper_color         : rgba(254, 221, 244, 0.4);
+$sett_active-btn_color      : rgba(255, 255, 255, 0.5);
+$sett_btn_color             : rgba(255, 255, 255, 0.4);
+$sett_active_color          : white;
+$sett_borderActive_color    : rgba(255, 255, 255, 0.44);
+$sett_borderHover_color     : white;
+
+//
+// player
+$player_bd_color            : $glob_main_color;
+$player_text_color          : white;
+$player_testActive_color    : $glob_main_color;
+$player_selectedTrack_color : #FFC75F;
+
+//
+// weather
+
+//
+// tasks
+$task_header_color          : $glob_main_color;
+$task_bg_color              : $glob_secondary_color;
+
+$task_list_fontSize         : 16px;
+$task_task_fontSize         : 16px;
+
+//
+// quotes
+$quotes_bg_color            : $glob_main_color;
+$quotes_text_color          : white;
+
+$quotes_borderRadius        : $glob_borderRadius;
+
+//
+// footer
+$footer_bg_color            : $glob_main_color;
+$footer_text_color            : white;
