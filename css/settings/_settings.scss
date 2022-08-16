@@ -1,31 +1,45 @@
-$sett_bg_color         : rgba(214, 93, 177, 0.7);
-$sett_wrapper_color    : rgba(254, 221, 244, 0.4);
-$sett_active-btn_color : #00a4b6;
-$sett_btn_color        : rgba(255, 255, 255, 0.44);
-
-.settings__wrapper{
-	align-self: end;
-	width : 300px;
-	display: flex;
-	flex-direction: row;
-	//align-items: start;
-	justify-content: end;
+.settings__wrapper {
+	@media (max-width : 765px) {
+		width           : 100%;
+		justify-content : start;
+	}
+	align-self      : end;
+	width           : 300px;
+	display         : flex;
+	flex-direction  : row;
+	align-items     : center;
+	justify-content : end;
+	gap             : 20px;
 }
 
 .settings__btn {
+	@media (max-width : 520px) {
+		position : fixed;
+		bottom   : 20px;
+		right    : 20px;
+		z-index  : 450;
+	}
+	//
 	//align-self: end;
 	//position      : absolute;
-	bottom        : 20px;
-	right         : 20px;
-	padding       : 10px;
-	background    : rgba(255, 255, 255, 0.7);
-	border-radius : 100px;
-	transition    : .3s ease-in-out;
-	width         : 50px;
-	height        : 50px;
+	bottom          : 20px;
+	right           : 20px;
+	padding         : 10px;
+	background      : $footer_bg_color;
+	backdrop-filter : blur(3px);
+	border-radius   : 100px;
+	transition      : .3s ease-in-out;
+	width           : 50px;
+	height          : 50px;
+	
+	img {
+		filter : invert(1);
+	}
 	
 	&.active {
-		display : none;
+		//display : none;
+		transition : 1.5s ease-in-out;
+		transform  : translate(100vw, 0);
 	}
 	
 	&:hover {
@@ -35,17 +49,21 @@ $sett_btn_color        : rgba(255, 255, 255, 0.44);
 
 .settings__bg {
 	z-index    : 1000;
-	position   : absolute;
+	position   : fixed;
 	top        : 0;
 	left       : 0;
-	display    : none;
+	//display    : none;
 	width      : 100%;
 	height     : 100%;
-	background : rgba(0, 0, 0, 0.37);
+	background : rgba(0, 0, 0, 0.0);
+	visibility : hidden;
+	transition : .5s ease-in-out;
 	
 	&.active {
-		display   : block;
-		//animation : thanosRevers .2s ease-in-out;
+		//display   : block;
+		visibility      : visible;
+		backdrop-filter : blur(1.2px);
+		background      : rgba(0, 0, 0, 0.30);
 	}
 }
 
@@ -55,7 +73,7 @@ $sett_btn_color        : rgba(255, 255, 255, 0.44);
 	bottom      : 20px;
 	right       : 20px;
 	z-index     : 1100;
-	color       : black;
+	color       : white;
 }
 
 
@@ -63,17 +81,19 @@ $sett_btn_color        : rgba(255, 255, 255, 0.44);
 	//&::-webkit-scrollbar {
 	//	//width : 0;
 	//}
-	.preference{
-		text-align: start;
-		font-size: 1.4rem;
+	#title-main {
+		text-align : start;
+		font-size  : 16px;
 	}
-	.global__setting{
-		img{
-			width : 35px;
+	
+	.global__setting {
+		img {
+			width  : 35px;
 			height : 35px;
 		}
-		display: flex;
-		flex-direction: row;
+		
+		display        : flex;
+		flex-direction : row;
 	}
 	
 	&::-webkit-scrollbar {
@@ -81,37 +101,42 @@ $sett_btn_color        : rgba(255, 255, 255, 0.44);
 	}
 	
 	&::-webkit-scrollbar-thumb {
-		background-color : rgba(255, 255, 255, 0.4);
+		background-color : rgba(0, 0, 0, 0.8);
 		border-radius    : 5px;
+		backdrop-filter  : blur(3px);
 	}
 	
 	
-	overflow-y     : visible;
-	overflow-x     : hidden;
+	overflow-y      : visible;
+	overflow-x      : hidden;
 	//
-	width          : 300px;
-	height         : 370px;
+	width           : 300px;
+	//height          : 370px;
 	//
 	//display        : none;
-	transform: translate(50vw);
-	transition: 1s;
-	visibility: hidden;
+	transform       : translate(100vw);
+	transition      : .5s;
+	visibility      : hidden;
 	//
-	position       : absolute;
-	bottom         : 0;
-	right          : 0;
-	background     : $sett_bg_color;
-	padding        : 10px;
-	border-radius  : 10px;
-	flex-direction : column;
-	gap            : 10px;
-	display        : flex;
+	position        : fixed;
+	bottom          : 5px;
+	right           : 5px;
+	background      : $sett_bg_color;
+	border-radius   : $glob_borderRadius;
+	backdrop-filter : blur(5px);
+	padding         : 10px;
+	flex-direction  : column;
+	gap             : 10px;
+	display         : flex;
+	height          : 90vh;
+	@media (max-width : 520px) {
+		height : 70vh;
+	}
 	
 	&.active {
-		
 		flex-direction : column;
-		transform: translate(0);
-		visibility: visible;
+		transform      : translate(0);
+		visibility     : visible;
 		//animation      : thanosRevers .2s ease-in-out;
 	}
 	
@@ -122,8 +147,8 @@ label {
 	display         : flex;
 	flex-direction  : row-reverse;
 	justify-content : start;
-	padding         : 5px 15px;
-	border-radius   : 5px;
+	padding         : 5px 5px;
+	border-radius   : $glob_borderRadius;
 	align-items     : center;
 	gap             : 5px;
 }
@@ -142,17 +167,23 @@ img {
 	height : 25px;
 }
 
+#title-imageTags {
+	padding    : 10px 0;
+	text-align : start;
+	font-size  : 16px;
+}
 
 form, .form-API_tags {
 	//border  : solid 3px black;
 	//padding : 5px;
 	//background     : $sett_wrapper_color;
-	border-radius : 10px;
+	//border-radius : 10px;
+	font-size : 16px;
 	
 	p {
 		padding    : 10px 0;
 		text-align : start;
-		font-size  : 1.2rem;
+		font-size  : 16px;
 	}
 	
 	.tags__container {
@@ -160,8 +191,19 @@ form, .form-API_tags {
 		flex-direction : column;
 		align-items    : start;
 		gap            : 10px;
+		opacity        : 1;
+		//visibility     : visible;
+		transition     : .5s ease-in-out;
+		
+		&.hidden {
+			opacity        : .2;
+			//visibility : hidden;
+			user-select    : none;
+			pointer-events : none;
+		}
 		
 		.setNewTag {
+			
 			display        : flex;
 			flex-direction : row;
 			align-items    : start;
@@ -205,24 +247,27 @@ form, .form-API_tags {
 			}
 		}
 		
+		//
 		button {
 			border     : none;
 			background : none;
-			img{
-				width : 35px;
+			
+			img {
+				width  : 35px;
 				height : auto;
 			}
+			
 			&:active {
 				transform : scale(1.10);
 			}
 		}
 		
 		textarea {
-			font-size: 1.1rem;
+			font-size     : 16px;
 			white-space   : nowrap;
 			width         : 100%;
-			border-radius : 10px;
-			border        : 2px solid black;
+			border-radius : 5px;
+			//border        : 2px solid black;
 			outline       : 0;
 			background    : $sett_btn_color;
 			resize        : none;
@@ -231,7 +276,7 @@ form, .form-API_tags {
 			//
 			&::placeholder {
 				color     : rgba(0, 0, 0, 0.61);
-				font-size : 1.1rem;
+				font-size : 16px;
 			}
 		}
 	}
@@ -249,26 +294,44 @@ form, .form-API_tags {
 				opacity         : 0.5;
 				transition      : .1s;
 				text-decoration : line-through;
-				border          : 2px solid transparent;
 				
 				&:hover {
-					border-color : inherit;
+					transform: scale(1.02);
 				}
 			}
 			
 			input[type="checkbox"]:checked + label {
 				background      : $sett_active-btn_color;
-				color           : white;
+				color           : black;
 				opacity         : 1;
 				text-decoration : none;
+				border-color    : $sett_borderActive_color;
+				
+				&:hover {
+					transform: scale(1.02);
+				}
+				
+				img {
+					animation : thanosUnD .5s ease-in-out;
+				}
 			}
 			
 			input[type="radio"]:checked + label {
 				background      : $sett_active-btn_color;
-				color           : white;
+				color           : black;
 				opacity         : 1;
 				text-decoration : none;
+				border-color    : $sett_borderActive_color;
+				
+				&:hover {
+					transform: scale(1.02);
+				}
+				
+				img {
+					animation : thanosUnD .5s ease-in-out;
+				}
 			}
+			
 		}
 		
 	}
@@ -281,5 +344,26 @@ form, .form-API_tags {
 	}
 	100% {
 		opacity : 1;
+	}
+}
+
+@keyframes thanos {
+	0% {
+		opacity : 1;
+	}
+	100% {
+		opacity : 0;
+	}
+}
+
+@keyframes thanosUnD {
+	0% {
+		transform : scale(1);
+	}
+	50% {
+		transform : scale(1.2);
+	}
+	100% {
+		transform : scale(1);
 	}
 }

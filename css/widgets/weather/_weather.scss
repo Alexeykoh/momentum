@@ -1,18 +1,23 @@
 // weather
 
 .weather {
-	transition: 1s;
-	&.hidden{
-		transform: translate(50vw);
+	transition      : 1s;
+	
+	&.hidden {
+		transform : translate(200vw);
 	}
+	
 	display         : flex;
 	flex-direction  : column;
 	justify-content : space-between;
 	align-items     : flex-start;
 	row-gap         : 5px;
-	width           : 180px;
+	width           : 300px;
 	min-height      : 180px;
 	text-align      : left;
+	padding         : 10px;
+	background      : $glob_main_color;
+	border-radius   : $glob_borderRadius;
 }
 
 .weather-error {
@@ -29,7 +34,8 @@
 
 .weather-icon {
 	font-size : 44px;
-	&::before{
+	
+	&::before {
 		height : 100px;
 	}
 }

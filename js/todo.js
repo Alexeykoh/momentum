@@ -8,8 +8,8 @@ let ToDo_props = {
 	countOfActiveTasks: 0,
 	lastColor: '',
 	windowMobile: false,
-	list_COLOR_alfa: 0.7,
-	list_COLOR_invert_alfa: 0.9,
+	list_COLOR_alfa: 0.3,
+	list_COLOR_invert_alfa: 0.4,
 }
 
 // === // === // === // === // === //
@@ -30,15 +30,17 @@ if(localStorage.getItem('ToDo') !== null){
 	memoryRender()
 }
 //
-if (ToDo.length === 0){
-	addToDATA ()
-	renderList(ToDo_props.last_list_ID)
-}
+
+// if (ToDo.length === 0){
+// 	addToDATA ()
+// 	renderList(ToDo_props.last_list_ID)
+// }
 //
 const newListBtn = document.querySelector ('.addListBtn')
 newListBtn.addEventListener ('click', function () {
 	addToDATA ()
 	renderList(ToDo_props.last_list_ID)
+	console.log (ToDo,ToDo,length)
 })
 //
 
@@ -48,8 +50,8 @@ function addToDATA () {
 	let ToDo_sample = {
 		list_ID:    ToDo_props.last_list_ID+1,
 		list_NAME:  'ToDo: '+(ToDo_props.last_list_ID+1),
-		list_COLOR: random_rgba(0,0.7),
-		list_COLOR_invert: random_rgba(0,0.9),
+		list_COLOR: random_rgba(0,0.3),
+		list_COLOR_invert: random_rgba(0,0.4),
 		task_COUNTER: -1,
 		tasks_ARR:  []
 	}
@@ -141,12 +143,12 @@ function addTask(list_ID){
 // === // === // === // === // === //
 // change Color From Btn
 function changeColorFromBtn (list_ID){
-	ToDo[findListID_DATA(list_ID)].list_COLOR = random_rgba(0,0.7)
+	ToDo[findListID_DATA(list_ID)].list_COLOR = random_rgba(0,0.4)
 	const list = document.getElementById (`list_id_${list_ID}`)
 	list.style.backgroundColor = ToDo[findListID_DATA(list_ID)].list_COLOR
 	ToDo_props.lastColor = ToDo[findListID_DATA(list_ID)].list_COLOR
 	//
-	const taskColor = random_rgba(0,0.9)
+	const taskColor = random_rgba(0,0.3)
 	ToDo[findListID_DATA(list_ID)].list_COLOR_invert = taskColor;
 	//
 	ToDo[findListID_DATA(list_ID)].tasks_ARR.forEach(function (taskKey,taskIndex){
@@ -210,7 +212,6 @@ function memoryRender (){
 	for (const memoKey in ToDo) {
 		renderList(ToDo[memoKey].list_ID)
 		for (const tasks_ARR_Key in ToDo[memoKey].tasks_ARR) {
-			// console.log (ToDo[memoKey].tasks_ARR[tasks_ARR_Key].task_ID)
 			let placeholder = ToDo[memoKey].tasks_ARR[tasks_ARR_Key].task_ID
 			renderTask(ToDo[memoKey].list_ID,placeholder)
 		}

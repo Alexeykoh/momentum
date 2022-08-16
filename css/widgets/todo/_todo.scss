@@ -12,11 +12,11 @@
 
 .ToDo__widget {
 	@media (max-width : 765px) {
-		order : 2;
+		//order : 1;
 	}
 	transition: 1s;
 	&.hidden{
-		transform: translate(-50vw);
+		transform: translate(-200vw);
 		visibility: hidden;
 	}
 	//transform  : translate(0, 390px);
@@ -48,6 +48,9 @@
 }
 
 .ToDo__Wrapper {
+	@media (max-width : 765px) {
+		width      : 300px;
+	}
 	width      : 300px;
 	height     : 300px;
 	//height     : 100%;
@@ -67,8 +70,9 @@
 		
 		//overflow-y: auto;
 		//
-		background     : rgba(255, 255, 255, 0.2);
-		border-radius  : 10px;
+		backdrop-filter: blur(2px);
+		//background     : $task_bg_color;
+		border-radius  : $glob_borderRadius;
 		
 		.ToDo__nav {
 			position        : relative;
@@ -111,7 +115,7 @@
 					width         : 180px;
 					padding       : 5px;
 					background    : rgba(240, 248, 255, 0.7);
-					border-radius : 10px;
+					border-radius : $glob_borderRadius;
 					text-align    : center;
 				}
 			}
@@ -125,12 +129,15 @@
 			align-items     : center;
 			justify-content : space-between;
 			//
-			background      : rgba(214, 93, 177, 0.9);
-			border-radius   : 10px;
+			background      : $task_header_color;
+			backdrop-filter: blur(3px);
+			border-radius   : $glob_borderRadius;
 			//
 		}
 		
 		.settings_btn {
+			display: none;
+			
 			border-radius : 10px;
 			background    : rgba(255, 255, 255, 0.4);
 			position      : absolute;
@@ -154,6 +161,8 @@
 		
 		.board {
 			//
+			height : 100%;
+			background     : $task_bg_color;
 			scroll-behavior : smooth;
 			transition      : .2s ease-in-out;
 			overflow-y      : visible;
@@ -175,7 +184,7 @@
 			
 			&::-webkit-scrollbar-thumb {
 				background-color : rgba(0, 0, 0, 0.7);
-				border-radius    : 5px;
+				border-radius    : $glob_borderRadius;
 			}
 			
 			//
@@ -196,10 +205,10 @@
 				}
 				transition      : .5s ease-in-out;
 				//
-				border-radius   : 10px;
+				border-radius   : $glob_borderRadius;
 				//
-				margin-top      : 10px;
-				margin-bottom   : 10px;
+				//margin-top      : 10px;
+				//margin-bottom   : 10px;
 				width           : 90%;
 				//
 				display         : flex;
@@ -264,11 +273,11 @@
 					gap            : 10px;
 					//
 					.task {
-						//height: 100%;
+						height: 100%;
 						animation      : newFromLeft .3s;
 						border         : solid rgba(0, 0, 0, 0.23) 2px;
 						padding        : 5px;
-						border-radius  : 10px;
+						border-radius  : $glob_borderRadius;
 						font-size      : .6rem;
 						width          : 90%;
 						//
@@ -292,7 +301,7 @@
 							font-family   : "Roboto Light", sans-serif;
 							//
 							background    : transparent;
-							border-radius : 5px;
+							border-radius : $glob_borderRadius;
 							border        : 0;
 							outline       : 0;
 							//
@@ -332,7 +341,7 @@
 						.task__content {
 							margin-top   : 5px;
 							font-family  : "Roboto Light", sans-serif;
-							font-size    : 1.1rem;
+							font-size    : $task_task_fontSize;
 							align-self   : center;
 							margin-left  : 10px;
 							margin-right : 10px;
@@ -342,11 +351,11 @@
 							outline      : 0;
 							background   : transparent;
 							resize       : none;
-							height       : auto;
+							height       : 100%;
 							
 							&::placeholder {
 								color     : rgba(0, 0, 0, 0.5);
-								font-size : 1.2rem;
+								font-size : $task_task_fontSize;
 							}
 						}
 						
@@ -355,7 +364,7 @@
 							background-color : rgba(255, 255, 255, 0.32);
 							padding          : 5px;
 							cursor           : pointer;
-							border-radius    : 5px;
+							border-radius    : $glob_borderRadius;
 						}
 						
 						input[type="date"] {
@@ -373,7 +382,7 @@
 					display         : flex;
 					justify-content : space-between;
 					align-items     : center;
-					margin          : 10px 20px;
+					margin          : 5px 10px;
 					//
 					.addTaskBtn {
 						padding       : 5px;

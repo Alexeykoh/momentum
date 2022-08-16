@@ -227,6 +227,7 @@ function play_pause (){
 // === // === // === // === // === //
 // play/pause audio from track properties
 function playAudio () {
+	track.pause()
 	trackProps.onAir = true
 	playImg.classList.add ('pause')
 	track.src         = trackProps.src;
@@ -302,9 +303,16 @@ function renderProgressBar () {
 	bar.max                = track.duration;
 	bar.value              = track.currentTime
 	trackProps.currentTime = track.currentTime;
-
-	let currentTime = convertTime(track.currentTime)
-	let maxTime = convertTime(track.duration)
+	let currentTime = 'on pause',
+	    maxTime = ''
+	if( track.duration > 0 ){
+		currentTime = convertTime(track.currentTime)
+		maxTime = convertTime(track.duration)
+	} else {
+		currentTime = 'loading'
+		maxTime = '...'
+	}
+	//
 	document.querySelector('.track-time').innerHTML = currentTime+':'+maxTime
 	//
 	if(Math.floor(track.duration-track.currentTime) === 0){
@@ -319,4 +327,12 @@ allProgBar.addEventListener ('input', function () {
 	track.currentTime = this.value
 	trackProps.currentTime = this.value
 	allProgBar.style.background = `linear-gradient(to right, #FFC75F 0%, #FFC75F ${percents}%, black ${percents}%, black 100%)`
+})
+
+
+// === // === // === // === // === //
+// open playlist
+const openPlaylist = document.querySelector('.playlist_btn')
+openPlaylist.addEventListener('click', function (){
+	document.querySelector('.play-list').classList.toggle('active')
 })

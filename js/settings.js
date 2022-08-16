@@ -1,9 +1,81 @@
-function getRandomNum (max){
-	return Math.floor(Math.random() * max)
+// === // === // === // === // === //
+//  open settings menu
+const tags__container = document.querySelector ('.tags__container')
+document.querySelector ('.settings__btn').addEventListener ('click', function () {
+	document.querySelector ('.settings__window').classList.add ('active')
+	document.querySelector ('.settings__btn').classList.add ('active')
+	document.querySelector ('.settings__bg').classList.add ('active')
+	settings__window.scrollTo (0, settings__window.scrollHeight * -1)
+	checkForGitAPI_tags ()
+})
+document.querySelector ('.settings__bg').addEventListener ('click', function () {
+	document.querySelector ('.settings__window').classList.remove ('active')
+	document.querySelector ('.settings__btn').classList.remove ('active')
+	document.querySelector ('.settings__bg').classList.remove ('active')
+})
+
+// === // === // === // === // === //
+//  check for hide/or un-hide image tag
+// 'if Git select as image source, then hide tag interface'
+function checkForGitAPI_tags () {
+	if (searchResult (properties.slider) === 'GitHub') {
+		tags__container.classList.add ('hidden')
+	} else {
+		tags__container.classList.remove ('hidden')
+	}
 }
 
-// greeting //
-function getGreet(){
+// === // === // === // === // === //
+//  properties data structure
+function searchResult (way) {
+	for (const wayKey in way) {
+		if (way[wayKey]) {
+			return wayKey
+		}
+	}
+}
+
+let properties = {
+	language: {
+		RU: false,
+		EN: true,
+	},
+	widgets:  {
+		weather: true,
+		player:  true,
+		ToDo:    true,
+		quotes:  true,
+		date:    true,
+	},
+	date:     {
+		time:     true,
+		date:     true,
+		greeting: true,
+	},
+	slider:   {
+		GitHub:       true,
+		Unsplash_API: false,
+		Flickr_API:   false,
+	},
+	tags:     [],
+}
+if (localStorage.getItem ('properties') === null) {
+	localStorage.setItem ('properties', JSON.stringify (properties));
+} else {
+	properties = JSON.parse (localStorage.getItem ('properties'))
+	renderSettings ()
+}
+
+
+// === // === // === // === // === //
+// randomizer
+function getRandomNum (max) {
+	return Math.floor (Math.random () * max)
+}
+
+// === // === // === // === // === //
+// greeting
+function getGreet () {
 	let greetVar = [
 		'night',
 		'morning',
@@ -11,143 +83,114 @@ function getGreet(){
 		'evening',
 		'night'
 	]
-	const date = new Date();
-	const hours = date.getHours();
-	const timeID= (4/24*hours);
+	const date   = new Date ();
+	const hours  = date.getHours ();
+	const timeID = (4 / 24 * hours);
 	return greetVar[Math.floor (timeID)]
 }
-const greet = getGreet()
 
-document.querySelector('.settings__btn').addEventListener('click',function (){
-	document.querySelector('.settings__window').classList.add('active')
-	document.querySelector('.settings__btn').classList.add('active')
-	document.querySelector('.settings__bg').classList.add('active')
-	console.log (properties)
-})
-document.querySelector('.settings__bg').addEventListener('click',function (){
-	document.querySelector('.settings__window').classList.remove('active')
-	document.querySelector('.settings__btn').classList.remove('active')
-	document.querySelector('.settings__bg').classList.remove('active')
-})
+const greet = getGreet ()
 
-let properties = {
-	language: {
-		RU: true,
-		EN: false,
-	},
-	widgets: {
-		weather: true,
-		player: true,
-		ToDo: true,
-		quotes: true,
-		date: true,
-	},
-	date: {
-		time: true,
-		date: true,
-		greeting: true,
-	},
-	slider: {
-		GitHub: true,
-		Unsplash_API: false,
-		Flickr_API: false,
-	},
-	tags: [greet],
-}
-if (localStorage.getItem('properties') === null){
-	localStorage.setItem('properties', JSON.stringify(properties));
-} else {
-	properties = JSON.parse(localStorage.getItem('properties'))
-	renderSettings()
-}
 
-function changeLangInProps(lang){
+function changeLangInProps (lang) {
 	for (const key in properties.language) {
 		properties.language[key] = false
 	}
 	properties.language[lang.value] = lang.checked
-	localStorage.setItem('properties', JSON.stringify(properties));
-	unparseWeather()
-	showDate()
+	localStorage.setItem ('properties', JSON.stringify (properties));
+	changeSettingsLanguage ()
+	unparseWeather ()
+	showDate ()
+	sendQuote (true)
+	switchGreeting ()
 }
-function changeWidgetInProps(widget){
+
+function changeWidgetInProps (widget) {
 	properties.widgets[widget.value] = widget.checked
-	localStorage.setItem('properties', JSON.stringify(properties));
-	show_hide_Widgets('widgets',widget)
+	localStorage.setItem ('properties', JSON.stringify (properties));
+	show_hide_Widgets ('widgets', widget)
 
 }
-function changeDateInProps(date){
+
+function changeDateInProps (date) {
 	properties.date[date.value] = date.checked
-	localStorage.setItem('properties', JSON.stringify(properties));
-	show_hide_Widgets('date',date)
+	localStorage.setItem ('properties', JSON.stringify (properties));
+	show_hide_Widgets ('date', date)
 
 }
-function changeApiInProps(slider){
+
+function changeApiInProps (slider) {
 	for (const key in properties.slider) {
 		properties.slider[key] = false
 	}
 	properties.slider[slider.value] = slider.checked
-	localStorage.setItem('properties', JSON.stringify(properties));
+	localStorage.setItem ('properties', JSON.stringify (properties));
+	checkForGitAPI_tags ()
 	setBg ()
 }
 
 
-function renderSettings (){
+function renderSettings () {
+	changeSettingsLanguage ()
 	for (const propertiesKey in properties) {
-		let element = document.querySelectorAll(`.input-${propertiesKey}`)
-		element.forEach(function (a, index){
-			let keys = Object.keys(properties[propertiesKey])[index].toString()
-			document.getElementById(a.id).checked = properties[propertiesKey][keys]
-			show_hide_Widgets(propertiesKey,a)
+		let element = document.querySelectorAll (`.input-${propertiesKey}`)
+		element.forEach (function (a, index) {
+			let keys                               = Object.keys (properties[propertiesKey])[index].toString ()
+			document.getElementById (a.id).checked = properties[propertiesKey][keys]
+			show_hide_Widgets (propertiesKey, a)
 		})
-		if (propertiesKey === 'tags'){
-			properties[propertiesKey].forEach((a)=>{
-				renderNewTag(a)
+		if (propertiesKey === 'tags') {
+			properties[propertiesKey].forEach ((a) => {
+				renderNewTag (a)
 			})
 		}
 	}
-	document.querySelectorAll('.removeTagSVG').forEach((a)=>{
-		a.addEventListener('click',removeTag)
+	document.querySelectorAll ('.removeTagSVG').forEach ((a) => {
+		a.addEventListener ('click', removeTag)
 	})
+	//
 }
-
 
 
 // === // === // === // === // === //
 //
-const settings__window = document.querySelector('.settings__window')
-const newTagButton = document.querySelector('.new-tag__btn')
-const newTagTextArea = document.querySelector('#tag-label')
-newTagButton.addEventListener('click',createNewTag)
-newTagTextArea.addEventListener('keypress',function (key){
-	if (key.key === 'Enter'){
-		createNewTag()
-		key.preventDefault()
+const settings__window = document.querySelector ('.settings__window')
+const newTagButton     = document.querySelector ('.new-tag__btn')
+const newTagTextArea   = document.querySelector ('#tag-label')
+newTagButton.addEventListener ('click', () => {
+	createNewTag (newTagTextArea.value)
+})
+newTagTextArea.addEventListener ('keypress', function (key) {
+	if (key.key === 'Enter') {
+		createNewTag (newTagTextArea.value)
+		key.preventDefault ()
 	}
 })
+
 //
-function createNewTag(){
-	if (newTagTextArea.value !== '' && !properties.tags.includes(newTagTextArea.value)){
-		properties.tags.push(newTagTextArea.value)
-		renderNewTag(newTagTextArea.value)
+function createNewTag (tagName) {
+	//console.log (tagName)
+	if (tagName !== '' && !properties.tags.includes (tagName)) {
+		properties.tags.push (tagName)
+		renderNewTag (tagName)
 	}
-	// console.log (properties.tags,properties.tags.length)
-	newTagTextArea.value = '';
+	newTagTextArea.value     = '';
 	newTagTextArea.innerHTML = '';
-	newTagTextArea.focus()
-	settings__window.scrollTo(0, settings__window.scrollHeight)
+	newTagTextArea.focus ()
+	settings__window.scrollTo (0, settings__window.scrollHeight)
 	//
-	localStorage.setItem('properties', JSON.stringify(properties));
+	localStorage.setItem ('properties', JSON.stringify (properties));
 	//
-	document.querySelectorAll('.removeTagSVG').forEach((a)=>{
-		a.addEventListener('click',removeTag)
-		// console.log (a)
+	document.querySelectorAll ('.removeTagSVG').forEach ((a) => {
+		a.addEventListener ('click', removeTag)
 	})
+
 }
+
 //
-function renderNewTag(id){
-	const tags__container = document.querySelector('#tags__wrapper')
-	let newElement = document.createElement ('li')
+function renderNewTag (id) {
+	const tags__container = document.querySelector ('#tags__wrapper')
+	let newElement        = document.createElement ('li')
 	newElement.classList.add ('API__tag')
 	newElement.setAttribute ('id', `tagName-${id}`);
 	newElement.innerHTML = id
@@ -163,103 +206,138 @@ function renderNewTag(id){
 }
 
 
-function removeTag(){
+function removeTag () {
 	const id = this.id.replace (/removeTag-/ig, '')
-	// console.log ('remove tag ',id)
-	document.getElementById(`tagName-${id}`).remove()
+	document.getElementById (`tagName-${id}`).remove ()
 	const tagArr = properties.tags;
-	properties.tags.splice(tagArr.indexOf(id), 1)
-	localStorage.setItem('properties', JSON.stringify(properties));
-	// console.log (properties.tags,properties.tags.length)
+	properties.tags.splice (tagArr.indexOf (id), 1)
+	localStorage.setItem ('properties', JSON.stringify (properties));
 }
 
 
-function show_hide_Widgets (type,input) {
-	console.log ('type / ',type)
-	console.log ('input / ',input.value)
+function show_hide_Widgets (type, input) {
+	if (type === 'date') {
+		const dateDOM     = document.querySelector ('.date')
+		const timeDOM     = document.querySelector ('.time')
+		const nameDOM     = document.querySelector ('.name')
+		const greetingDOM = document.querySelector ('.greeting')
+		//
+		if (input.value === 'time') {
+			if (properties.date[input.value]) {
+				timeDOM.classList.remove ('hidden')
+			} else {
+				timeDOM.classList.add ('hidden')
+			}
+		}
+		if (input.value === 'date') {
+			if (properties.date[input.value]) {
+				dateDOM.classList.remove ('hidden')
+			} else {
+				dateDOM.classList.add ('hidden')
+			}
+		}
+		if (input.value === 'greeting') {
+			if (properties.date[input.value]) {
+				nameDOM.classList.remove ('hidden')
+				greetingDOM.classList.remove ('hidden')
+			} else {
+				nameDOM.classList.add ('hidden')
+				greetingDOM.classList.add ('hidden')
+			}
+		}
+	}
+
+	if (type === 'widgets') {
+		const dateDOM     = document.querySelector ('.date')
+		const timeDOM     = document.querySelector ('.time')
+		const nameDOM     = document.querySelector ('.name')
+		const greetingDOM = document.querySelector ('.greeting')
+		//
+		if (input.value === 'player') {
+			const playerDOM = document.querySelector ('.player')
+			if (properties.widgets[input.value]) {
+				playerDOM.classList.remove ('hidden')
+			} else {
+				playerDOM.classList.add ('hidden')
+			}
+		}
+		if (input.value === 'weather') {
+			const playerDOM = document.querySelector ('.weather')
+			if (properties.widgets[input.value]) {
+				playerDOM.classList.remove ('hidden')
+			} else {
+				playerDOM.classList.add ('hidden')
+			}
+		}
+		if (input.value === 'ToDo') {
+			const playerDOM = document.querySelector ('.ToDo__widget')
+			if (properties.widgets[input.value]) {
+				playerDOM.classList.remove ('hidden')
+			} else {
+				playerDOM.classList.add ('hidden')
+			}
+		}
+		if (input.value === 'quotes') {
+			const playerDOM = document.querySelector ('.quotes__wrapper')
+			if (properties.widgets[input.value]) {
+				playerDOM.classList.remove ('hidden')
+			} else {
+				playerDOM.classList.add ('hidden')
+			}
+		}
+		if (input.value === 'date') {
+
+			if (properties.widgets[input.value]) {
+				dateDOM.classList.remove ('hidden')
+				timeDOM.classList.remove ('hidden')
+				nameDOM.classList.remove ('hidden')
+				greetingDOM.classList.remove ('hidden')
+			} else {
+				dateDOM.classList.add ('hidden')
+				timeDOM.classList.add ('hidden')
+				nameDOM.classList.add ('hidden')
+				greetingDOM.classList.add ('hidden')
+			}
+		}
+	}
+}
+
+
+async function changeSettingsLanguage () {
+	let titles = document.querySelectorAll ('.sett__title')
+	titles.forEach (function (title) {
+		let id   = title.id.replace (/title-/ig, '')
+		let data = localization.preference[id]
+		for (const dataKey in data) {
+			title.textContent = data[dataKey][searchResult (properties.language)];
+		}
+	})
 	//
-	if (type === 'date'){
-		const dateDOM = document.querySelector('.date')
-		const timeDOM = document.querySelector('.time')
-		const nameDOM = document.querySelector('.name')
-		const greetingDOM = document.querySelector('.greeting')
-		//
-		if(input.value === 'time'){
-			if (properties.date[input.value]){
-				timeDOM.classList.remove('hidden')
-			} else {
-				timeDOM.classList.add('hidden')
-			}
-		}
-		if(input.value === 'date'){
-			if (properties.date[input.value]){
-				dateDOM.classList.remove('hidden')
-			} else {
-				dateDOM.classList.add('hidden')
-			}
-		}
-		if(input.value === 'greeting'){
-			if (properties.date[input.value]){
-				nameDOM.classList.remove('hidden')
-				greetingDOM.classList.remove('hidden')
-			} else {
-				nameDOM.classList.add('hidden')
-				greetingDOM.classList.add('hidden')
-			}
-		}
-	}
+	let labels = document.querySelectorAll ('.sett__sub-title')
+	labels.forEach (function (label) {
+		let id   = label.id.replace (/label-/ig, '')
+		let data = localization.preference
+		findLang (id)
 
-	if (type === 'widgets'){
-		const dateDOM = document.querySelector('.date')
-		const timeDOM = document.querySelector('.time')
-		const nameDOM = document.querySelector('.name')
-		const greetingDOM = document.querySelector('.greeting')
-		//
-		if(input.value === 'player'){
-			const playerDOM = document.querySelector('.player')
-			if (properties.widgets[input.value]){
-				playerDOM.classList.remove('hidden')
-			} else {
-				playerDOM.classList.add('hidden')
+		function findLang (id) {
+			//console.log ('')
+			for (const localizationKey in data) {
+				if (data[localizationKey][id] !== undefined) {
+					label.firstChild.textContent = (data[localizationKey][id][searchResult (properties.language)])
+					//console.log (label.firstChild.textContent)
+				}
 			}
 		}
-		if(input.value === 'weather'){
-			const playerDOM = document.querySelector('.weather')
-			if (properties.widgets[input.value]){
-				playerDOM.classList.remove('hidden')
-			} else {
-				playerDOM.classList.add('hidden')
-			}
-		}
-		if(input.value === 'ToDo'){
-			const playerDOM = document.querySelector('.ToDo__widget')
-			if (properties.widgets[input.value]){
-				playerDOM.classList.remove('hidden')
-			} else {
-				playerDOM.classList.add('hidden')
-			}
-		}
-		if(input.value === 'quotes'){
-			const playerDOM = document.querySelector('.quotes__wrapper')
-			if (properties.widgets[input.value]){
-				playerDOM.classList.remove('hidden')
-			} else {
-				playerDOM.classList.add('hidden')
-			}
-		}
-		if(input.value === 'date'){
 
-			if (properties.widgets[input.value]){
-				dateDOM.classList.remove('hidden')
-				timeDOM.classList.remove('hidden')
-				nameDOM.classList.remove('hidden')
-				greetingDOM.classList.remove('hidden')
-			} else {
-				dateDOM.classList.add('hidden')
-				timeDOM.classList.add('hidden')
-				nameDOM.classList.add('hidden')
-				greetingDOM.classList.add('hidden')
-			}
-		}
-	}
+	})
+}
+
+
+function hexToRgb(hex) {
+	let bigint = parseInt(hex, 16);
+	let r = (bigint >> 16) & 255;
+	let g = (bigint >> 8) & 255;
+	let b = bigint & 255;
+
+	return r + "," + g + "," + b;
 }

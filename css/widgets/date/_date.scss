@@ -2,7 +2,7 @@
 .time {
 	transition: 1s ease-in-out;
 	&.hidden{
-		transform: translate(0 ,-100vh);
+		transform: translate(0 ,-200vh);
 	}
 	min-height     : 124px;
 	margin-bottom  : 10px;
@@ -12,9 +12,9 @@
 }
 
 .date {
-	transition: 1s ease-in-out;
+	transition: 1.5s ease-in-out;
 	&.hidden{
-		transform: translate(0 ,-100vh);
+		transform: translate(0 ,-200vh);
 	}
 	min-height    : 28px;
 	font-size     : 24px;
@@ -38,9 +38,9 @@
 	@media (max-width : 765px) {
 		text-align: start;
 	}
-	transition: 1s ease-in-out;
+	transition: 1.5s ease-in-out;
 	&.hidden{
-		transform: translate(-100vw ,0);
+		transform: translate(-200vw ,0);
 	}
 	flex       : 1;
 	padding    : 10px;
@@ -50,7 +50,7 @@
 .name {
 	transition: 1s ease-in-out;
 	&.hidden{
-		transform: translate(100vw ,0);
+		transform: translate(120vw ,0);
 	}
 	flex             : 1;
 	max-width        : 50%;
