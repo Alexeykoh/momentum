@@ -1,16 +1,23 @@
 .change-quote {
-	@media (max-width : 765px){
+	user-select      : none;
+	@media (max-width : 765px) {
 		margin-bottom : 0;
 	}
 	margin-bottom    : 30px;
 	background-image : url("../../assets/svg/reload.svg");
 }
+
 //
-.change-quote{
-	@media (max-width : 765px){
-		width  : 110px;
-		height : 50px;
-		background-size     : 25px 25px;
+.change-quote {
+	user-select         : none;
+	@media (max-width : 765px) {
+		position        : absolute;
+		z-index         : 120;
+		width           : 110px;
+		height          : 50px;
+		background-size : 25px 25px;
+		bottom          : 10px;
+		right           : 10px;
 	}
 	width               : 35px;
 	height              : 35px;
@@ -23,59 +30,73 @@
 	opacity             : .8;
 	cursor              : pointer;
 	transition          : .3s;
+	
 }
 
 .quote {
-	@media (max-width : 765px){
+	@media (max-width : 765px) {
 	}
-	min-height : 35px;
+	min-height    : 35px;
 	margin-bottom : 5px;
-	transition: 1s ease-in-out;
+	transition    : 1s ease-in-out;
 }
 
 .author {
 	min-height : 20px;
-	transition: 1s ease-in-out;
+	transition : 1s ease-in-out;
 }
 
-.quotes{
+.quotes {
 	@media (max-width : 765px) {
 		min-height : 225px;
+		width      : 300px;
 	}
-	transition: 1s ease-in-out;
-	font-family: "Roboto Condensed" , sans-serif;
-	max-width: 500px;
-	padding : 10px 25px;
-	background: $quotes_bg_color;
-	backdrop-filter: blur(3px);
-	border-radius: $quotes_borderRadius;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap : 10px;
+	transition      : 1s ease-in-out;
+	font-family     : "Roboto Condensed", sans-serif;
+	max-width       : 500px;
+	padding         : 10px 25px;
+	background      : $quotes_bg_color;
+	backdrop-filter : blur(3px);
+	border-radius   : $quotes_borderRadius;
+	display         : flex;
+	flex-direction  : column;
+	align-items     : center;
+	justify-content : center;
+	gap             : 10px;
 	//mix-blend-mode: color;
-	color: inherit;
+	color           : inherit;
 	//color: $quotes_text_color;
 }
 
-.quotes__wrapper{
+.quotes__wrapper {
 	//width : 100%;
+	position        : relative;
 	
-	@media (max-width : 520px){
-		flex-direction: row;
+	@media (max-width : 520px) {
+		flex-direction : row;
 	}
-	transition: .5s ease-in-out;
-	opacity: 1;
-	&.hidden{
-		opacity: 0;
-		visibility: hidden;
-		pointer-events: none;
+	transition      : .5s ease-in-out;
+	opacity         : 1;
+	
+	&.hidden {
+		opacity        : 0;
+		visibility     : hidden;
+		pointer-events : none;
 	}
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap : 10px;
+	
+	display         : flex;
+	flex-direction  : column;
+	align-items     : center;
+	justify-content : center;
+	gap             : 10px;
 }
 
+@keyframes rotor {
+	0% {
+		transform : rotate(0);
+	}
+	100% {
+		transform : rotate(180deg);
+	}
+	
+}
