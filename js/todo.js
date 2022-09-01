@@ -50,8 +50,10 @@ function addToDATA () {
 	let ToDo_sample = {
 		list_ID:    ToDo_props.last_list_ID+1,
 		list_NAME:  'ToDo: '+(ToDo_props.last_list_ID+1),
-		list_COLOR: random_rgba(0,0.3),
-		list_COLOR_invert: random_rgba(0,0.4),
+		// list_COLOR: random_rgba(0,0.3),
+		// list_COLOR_invert: random_rgba(0,0.4),
+		list_COLOR: 'rgba(15, 15, 15, 0.6)',
+		list_COLOR_invert: random_rgba(0,0.6),
 		task_COUNTER: -1,
 		tasks_ARR:  []
 	}
@@ -260,9 +262,7 @@ function dateDeadlinesCheck(){
 					document.getElementById (`task__deadline_${task_ID}`).style.background = 'rgba(255, 0, 0, 0.50)'
 				}
 			} else {
-				if (today >= task_Deadline){
-					document.getElementById (`task__deadline_${task_ID}`).style.background = 'rgba(0, 255, 0, 0.50)'
-				}
+				document.getElementById (`task__deadline_${task_ID}`).style.background = 'rgba(0, 255, 0, 0.50)'
 			}
 		})
 	})
@@ -301,9 +301,19 @@ background.addEventListener('click', function (){
 })
 
 // === // === // === // === // === //
-// show/hive
+// show/hide
 const nav = document.querySelector('.ToDo__hide_btn')
 const todoWidget = document.querySelector('.ToDo__widget')
+const ToDo__Wrapper = document.querySelector('.ToDo__Wrapper')
+const todo_darkBG = document.querySelector('.todo_darkBG')
 nav.addEventListener('click',function (){
-	todoWidget.classList.toggle('active')
+	todoWidget.classList.toggle('open')
+	ToDo__Wrapper.classList.toggle('open')
+	todo_darkBG.classList.toggle('open')
+	todo_darkBG.style.background = properties.dgColor
+})
+todo_darkBG.addEventListener('click',() => {
+	todoWidget.classList.toggle('open')
+	ToDo__Wrapper.classList.toggle('open')
+	todo_darkBG.classList.toggle('open')
 })

@@ -9,11 +9,27 @@
 .slide-prev {
 	left             : 20px;
 	background-image : url("../../assets/svg/slider-prev.svg");
+	transition: 1s ease-in-out;
+	//&:active{
+	//	transform: scale(1.5);
+	//}
+	&.onload{
+		cursor: not-allowed;
+		opacity: 0.1;
+	}
 }
 
 .slide-next {
 	right            : 20px;
 	background-image : url("../../assets/svg/slider-next.svg");
+	transition: 1s ease-in-out;
+	//&:active{
+	//	transform: scale(1.5);
+	//}
+	&.onload{
+		cursor: not-allowed;
+		opacity: 0.1;
+	}
 }
 
 .slide-next, .slide-prev {

@@ -9,9 +9,22 @@
 </head>
 <body>
 
+<div class="new__context">
+	<ul>
+		<li>kek-1</li>
+		<li>kek-2</li>
+		<li>kek-3</li>
+		<li>kek-4</li>
+	</ul>
+</div>
+<div class="preloader active">
+	<img class="preloader-img active" src="assets/svg/reload.svg" alt="preloader-img">
+	<p class="hello">hello</p>
+</div>
+<div class="todo_darkBG"></div>
 
 <header class="header">
-	<div class="player">
+	<div class="player ">
 		<div class="player__header">
 			<div class="player_control_panel">
 				<div class="mini__wrapper">
@@ -40,7 +53,7 @@
 		<ul class="play-list active"></ul>
 	
 	</div>
-	<div class="weather">
+	<div class="weather ">
 		<input type="text" class="city"/>
 		<i class="weather-icon owf" id="icons"></i>
 		<div class="weather-error"></div>
@@ -57,15 +70,15 @@
 		<button class="slide-prev slider-icon"></button>
 		<button class="slide-next slider-icon"></button>
 	</div>
-	<time class="time"></time>
-	<date class="date"></date>
+	<time class="time "></time>
+	<date class="date "></date>
 	<div class="greeting-container">
-		<span class="greeting"></span>
-		<input type="text" class="name" placeholder="[Enter name]"/>
+		<span class="greeting "></span>
+		<input type="text" class="name " placeholder="[Enter name]"/>
 	</div>
 </main>
 <footer class="footer">
-	<div class="ToDo__widget">
+	<div class="ToDo__widget ">
 		<img class="ToDo__hide_btn" src="assets/Todo/hide.svg" alt="hide-ico">
 		<div class="ToDo__Wrapper">
 			<span class="background"></span>
@@ -83,7 +96,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="quotes__wrapper">
+	<div class="quotes__wrapper ">
 		<button class="change-quote"></button>
 		<div class="quotes">
 			<div class="quote"></div>
@@ -244,6 +257,7 @@
 				</div>
 			</div>
 		</div>
+		<img src="assets/svg/download-ico.svg" alt="settings-btn" class="download__ico">
 		<ul class="rss__wrapper">
 			<li class="rss-item">
 				<a target="_blank" href="https://github.com/Alexeykoh?tab=repositories" class="footer__link">
@@ -260,13 +274,15 @@
 			</li>
 		</ul>
 		<img src="assets/Todo/settings.svg" alt="settings-btn" class="settings__btn">
-		
 	</div>
 	<div id="warning__tag">
 	</div>
+	
 </footer>
 
+<!--<script type="module" src="js/app.js"></script>-->
 
+<script src="js/preloader.js"></script>
 <script src="js/translate.js"></script>
 <script src="js/colorPalett.js"></script>
 <script src="js/settings.js"></script>

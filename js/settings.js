@@ -1,3 +1,20 @@
+document.oncontextmenu = function (a){
+	a.preventDefault()
+}
+//
+document.querySelector('body').addEventListener('contextmenu',function (event){
+
+})
+//
+
+
+
+//
+const dateDOM     = document.querySelector ('.date')
+const timeDOM     = document.querySelector ('.time')
+const nameDOM     = document.querySelector ('.name')
+const greetingDOM = document.querySelector ('.greeting')
+
 // === // === // === // === // === //
 //  open settings menu
 const tags__container = document.querySelector ('.tags__container')
@@ -36,6 +53,8 @@ function searchResult (way) {
 }
 
 let properties = {
+	dgColor: '',
+	textColor: '',
 	language: {
 		RU: false,
 		EN: true,
@@ -126,7 +145,7 @@ function changeApiInProps (slider) {
 	properties.slider[slider.value] = slider.checked
 	localStorage.setItem ('properties', JSON.stringify (properties));
 	checkForGitAPI_tags ()
-	setBg ()
+	// setBg ()
 }
 
 
@@ -217,10 +236,7 @@ function removeTag () {
 
 function show_hide_Widgets (type, input) {
 	if (type === 'date') {
-		const dateDOM     = document.querySelector ('.date')
-		const timeDOM     = document.querySelector ('.time')
-		const nameDOM     = document.querySelector ('.name')
-		const greetingDOM = document.querySelector ('.greeting')
+
 		//
 		if (input.value === 'time') {
 			if (properties.date[input.value]) {
@@ -341,3 +357,4 @@ function hexToRgb(hex) {
 
 	return r + "," + g + "," + b;
 }
+

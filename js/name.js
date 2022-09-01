@@ -1,6 +1,5 @@
 
 
-// switch ()
 switchGreeting()
 function switchGreeting(){
 	let greeting = (localization.greeting[getGreet()][searchResult(properties.language)])

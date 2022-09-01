@@ -101,7 +101,7 @@ function RGBToHSL (r, g, b) {
 
 function getAverageRGB (imgEl) {
 	imgEl.crossOrigin = 'Anonymous'
-	console.log (imgEl)
+	//console.log (imgEl)
 	//
 	const canvas        = document.createElement ("canvas");
 	const context       = canvas.getContext && canvas.getContext ("2d");

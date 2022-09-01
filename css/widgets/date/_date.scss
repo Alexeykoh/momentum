@@ -1,9 +1,11 @@
 
 .time {
-	transition: 1s ease-in-out;
-	&.hidden{
-		transform: translate(0 ,-200vh);
+	transition     : 1s ease-in-out;
+	
+	&.hidden {
+		transform : translate(0, -200vh);
 	}
+	
 	min-height     : 124px;
 	margin-bottom  : 10px;
 	font-family    : "Roboto Thin", sans-serif;
@@ -12,10 +14,12 @@
 }
 
 .date {
-	transition: 1.5s ease-in-out;
-	&.hidden{
-		transform: translate(0 ,-200vh);
+	transition    : 1.5s ease-in-out;
+	
+	&.hidden {
+		transform : translate(0, -200vh);
 	}
+	
 	min-height    : 28px;
 	font-size     : 24px;
 	margin-bottom : 20px;
@@ -30,30 +34,34 @@
 	width           : 100vw;
 	font-size       : 40px;
 	@media (max-width : 765px) {
-		flex-direction: column;
+		flex-direction : column;
 	}
 }
 
 .greeting {
 	@media (max-width : 765px) {
-		text-align: start;
+		text-align : start;
 	}
-	transition: 1.5s ease-in-out;
-	&.hidden{
-		transform: translate(-200vw ,0);
+	transition : 1.5s ease-in-out;
+	
+	&.hidden {
+		transform : translate(-200vw, 0);
 	}
+	
 	flex       : 1;
 	padding    : 10px;
 	text-align : right;
 }
 
 .name {
-	transition: 1s ease-in-out;
-	&.hidden{
-		transform: translate(120vw ,0);
+	transition       : 1s ease-in-out;
+	
+	&.hidden {
+		transform : translate(120vw, 0);
 	}
+	
 	flex             : 1;
-	max-width        : 50%;
+	max-width        : 60%;
 	padding          : 10px;
 	font-size        : 40px;
 	text-align       : left;

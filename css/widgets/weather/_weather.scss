@@ -6,7 +6,7 @@
 	&.hidden {
 		transform : translate(200vw);
 	}
-	
+	backdrop-filter : blur(3px);
 	display         : flex;
 	flex-direction  : column;
 	justify-content : space-between;

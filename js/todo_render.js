@@ -1,5 +1,5 @@
 function renderList (list_ID) {
-	console.log (list_ID,this)
+	//console.log (list_ID,this)
 	const clear__description = document.querySelector('.clear-description')
 	let descriptionLang = localization.ToDo.clearTask[searchResult(properties.language)]
 	clear__description.textContent = descriptionLang
@@ -8,8 +8,9 @@ function renderList (list_ID) {
 	const list  = document.createElement ('div')
 	list.classList.add ('list')
 	list.setAttribute ('id', `list_id_${ToDo[findListID_DATA(list_ID)].list_ID}`);
-	list.style.transition = '.5s ease-in-out'
+	// list.style.transition = '.5s ease-in-out'
 	list.style.backgroundColor = ToDo[findListID_DATA(list_ID)].list_COLOR
+	// list.style.backgroundColor = 'rgba(15, 15, 15, 0.6)'
 	//
 	// board.appendChild (list)
 	//
@@ -19,10 +20,10 @@ function renderList (list_ID) {
 	list__head.classList.add ('list__head')
 	list.appendChild (list__head)
 	//
-	const list__preName = document.createElement ('div')
-	list__preName.classList.add ('list__preName')
-	list__preName.innerHTML = 'ToDo: '
-	list__head.appendChild (list__preName)
+	// const list__preName = document.createElement ('div')
+	// list__preName.classList.add ('list__preName')
+	// list__preName.innerHTML = 'ToDo: '
+	// list__head.appendChild (list__preName)
 	//
 	const list__name = document.createElement ('textarea')
 	list__name.classList.add ('list__name')
@@ -85,7 +86,7 @@ function renderTask (list_ID, placeholderImport) {
 	let placeholder = ToDo[findListID_DATA(list_ID)].tasks_ARR[ToDo[findListID_DATA(list_ID)].tasks_ARR.length-1].task_ID
 	if (placeholderImport !== undefined){
 		placeholder = placeholderImport
-		// console.log ('extra placeholder > ',placeholder)
+		// //console.log ('extra placeholder > ',placeholder)
 	}
 	const listData = document.getElementById (`task_list_id_${list_ID}`)
 	//
@@ -139,7 +140,7 @@ function renderTask (list_ID, placeholderImport) {
 	task__deadline.setAttribute ('name', `deadline`);
 	task__deadline.value = ToDo[findListID_DATA (list_ID)].tasks_ARR[findTaskID_DATA (list_ID, placeholder)].task_DEADLINE
 	//
-	// console.log ('placeholder for deadline',placeholder)
+	// //console.log ('placeholder for deadline',placeholder)
 	task__deadline.setAttribute ('onchange', `editDate(${list_ID},'${placeholder}',this)`);
 	task__wrapper.appendChild (task__deadline)
 	//
@@ -177,7 +178,7 @@ function renderTask (list_ID, placeholderImport) {
 
 
 
-// console.log (random_rgba(0,0.6))
+// //console.log (random_rgba(0,0.6))
 function random_rgba (list,alfa) {
 	const colorList = [
 		['FFC75F','FF9671','FF6F91','D65DB1','845EC2']

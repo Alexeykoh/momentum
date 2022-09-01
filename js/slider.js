@@ -1,32 +1,43 @@
-let slidesCounter  = getRandomNum (20)
-const nextSlideBtn = document.querySelector ('.slide-next')
-const prevSlideBtn = document.querySelector ('.slide-prev')
-let maxSliders     = 20;
-let defaultColors  = {
+let slidesCounter   = getRandomNum(20)
+const nextSlideBtn  = document.querySelector ('.slide-next')
+const prevSlideBtn  = document.querySelector ('.slide-prev')
+const settings__btn = document.querySelector ('.settings__btn')
+const download__ico = document.querySelector ('.download__ico')
+const slide__prev   = document.querySelector ('.slide-prev')
+const slide__next   = document.querySelector ('.slide-next')
+let maxSliders      = 20;
+let defaultColors   = {
 	bgColor:   'rgba(15, 15, 15, 0.6)',
 	textColor: 'white'
 }
 
 nextSlideBtn.addEventListener ('click', function () {
 	//
-	slidesCounter++
-	if (slidesCounter === maxSliders) {
-		slidesCounter = 0
+	if (!isCompleteLoadIMG ()) {
+		console.log ('click')
+		slidesCounter++
+		if (slidesCounter === maxSliders) {
+			slidesCounter = 0
+		}
+		toLoadImageAnimation ()
+		setBg ()
 	}
-	setBg ()
 })
 //
 prevSlideBtn.addEventListener ('click', function () {
-	slidesCounter--
-	if (slidesCounter < 0) {
-		slidesCounter = props.maxSlides
+	if (!isCompleteLoadIMG ()) {
+		slidesCounter--
+		if (slidesCounter < 0) {
+			slidesCounter = props.maxSlides
+		}
+		toLoadImageAnimation ()
+		setBg ()
 	}
-	setBg ()
 })
 
 setBg ()
 
-function setBg () {
+function setBg (err) {
 	//
 	let number = slidesCounter;
 	if (slidesCounter < 10) {
@@ -38,9 +49,13 @@ function setBg () {
 		number = '01'
 	}
 	//
+
 	let toDATA = {
 		number_: number,
 		greet_:  greet,
+	}
+	if (err){
+		toDATA.number_ ++
 	}
 	//
 	connectAPI (toDATA)
@@ -76,18 +91,14 @@ async function connectAPI (data) {
 		//
 
 		await fetch (fetchURL)
-			.catch (res => {
-				if (res.status !== 200) {
-					fetchErr ('Unsplash API / code: ', res.status)
-				}
-			})
 			.then (res => res.json ())
+
 			.then (data => {
+				console.log (data)
 				src = data.urls.regular
 				adapterBG (src)
-			});
-
-
+			})
+		//
 	}
 	// Flickr_API
 	if (properties.slider.Flickr_API) {
@@ -97,51 +108,76 @@ async function connectAPI (data) {
 		    fetchURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api_key}&tags=${tags}&extras=${extras}&format=json&nojsoncallback=1`
 		//
 		await fetch (fetchURL)
-			.catch (res => {
-				if (res.status !== 200) {
-					fetchErr ('Flickr API / code: ', res.status)
-				}
-			})
 			.then (res => res.json ())
 			.then (data => {
+				console.log (data.status)
 				maxSliders = data.photos.photo.length
 				src        = data.photos.photo[importData.number_ * 1].url_h
 				// changeColors (defaultColors.bgColor, true)
 				adapterBG (src)
-			});
-
+			})
+		//
 	}
-	//
-	// set background
-	let toData = [src]
-	// adapterBG (src)
+}
 
+// restart bg
+document.querySelector('.download__ico').addEventListener('click',()=>{
+	const label_GitHub = document.getElementById('label-GitHub')
+	label_GitHub.checked = true
+	changeApiInProps(label_GitHub)
+	setBg ()
+})
+
+function toLoadImageAnimation () {
+	//
+	download__ico.classList.add ('active')
+	slide__prev.classList.add ('onload')
+	slide__next.classList.add ('onload')
+	//
+	console.log ('start download')
+}
+
+function isCompleteLoadIMG () {
+	const download__ico = document.querySelector ('.download__ico')
+	return download__ico.classList.contains ('active')
+}
+
+function completeLoadImageAnimation () {
+	if (isCompleteLoadIMG ()) {
+		setTimeout (() => {
+			console.log ('download complete')
+			download__ico.classList.remove ('active')
+			slide__prev.classList.remove ('onload')
+			slide__next.classList.remove ('onload')
+		}, 1500)
+	}
 }
 
 function imageReceived () {
-	const body                 = document.querySelector ('body')
-	let canvas = document.createElement("canvas");
-	let context = canvas.getContext("2d");
-
-	canvas.width = this.width;
-	canvas.height = this.height;
-	context.drawImage(this, 0, 0);
-
-	// try {localStorage.setItem("saved-image-example", canvas.toDataURL("image/png"));}
-	// catch(err) {console.log("Error: " + err);}
-
-	let images = new Image()
-	images.src = canvas.toDataURL("image/png")
-	body.style.backgroundImage = `url(${images.src})`;
 	//
-	setTimeout(()=>{
+	const body    = document.querySelector ('body')
+	let canvas    = document.createElement ("canvas");
+	let context   = canvas.getContext ("2d");
+	//
+	canvas.width  = this.width;
+	canvas.height = this.height;
+	context.drawImage (this, 0, 0);
+	//
+	let images                 = new Image ()
+	images.src                 = canvas.toDataURL ("image/png")
+	//
+	setTimeout (() => {
+		body.style.backgroundImage = `url(${images.src})`;
+	}, 500)
+	
+	//
+	setTimeout (() => {
 		let color = getAverageRGB (images)
-		console.log (color)
+		////console.log (color)
 		changeColors (color, false)
-	},10)
-
-
-
+	}, 10)
+	//
+	completeLoadImageAnimation ()
 }
 
 function adapterBG (src, callback, outputFormat) {
@@ -150,6 +186,10 @@ function adapterBG (src, callback, outputFormat) {
 	img.src         = src;
 	img.crossOrigin = 'Anonymous';
 	img.addEventListener ("load", imageReceived, false);
+	img.onerror = () => {
+		fetchErr ()
+		setBg(true)
+	}
 }
 
 function adaptColor (color) {
@@ -161,39 +201,52 @@ function adaptColor (color) {
 }
 
 function changeColors (color, hex) {
-	//console.log (color)
+	//////console.log (color)
 	let bgColor;
+	let bgText;
 	if (hex) {
-		bgColor = `rgb(${hexToRgb (color.replace (/#/ig, ''))},0.15)`
+		bgColor = `rgb(${hexToRgb (color.replace (/#/ig, ''))},0.15)`;
+		bgText  = `rgb(${hexToRgb (color.replace (/#/ig, ''))})`;
 	} else {
-		bgColor = `rgb(${color.r}, ${color.g}, ${color.b},0.15)`
+		bgColor = `rgb(${color.r}, ${color.g}, ${color.b},0.15)`;
+		bgText  = `rgb(${color.r}, ${color.g}, ${color.b})`;
 	}
-	document.querySelector ('.quotes').style.background        = bgColor
-	document.querySelector ('.ToDo__nav').style.background     = bgColor
-	document.querySelector ('.player').style.background        = bgColor
-	document.querySelector ('.rss__wrapper').style.background  = bgColor
-	document.querySelector ('.settings__btn').style.background = bgColor
-	document.querySelector ('.weather').style.background = bgColor
+	//
+	properties.dgColor   = bgColor;
+	properties.textColor = bgText;
+	localStorage.setItem ('properties', JSON.stringify (properties));
+	//
+	document.querySelector ('.quotes').style.background           = bgColor
+	document.querySelector ('.ToDo__nav').style.background        = bgColor
+	document.querySelector ('.player').style.background           = bgColor
+	document.querySelector ('.rss__wrapper').style.background     = bgColor
+	document.querySelector ('.settings__btn').style.background    = bgColor
+	document.querySelector ('.weather').style.background          = bgColor
+	document.querySelector ('.settings__window').style.background = bgColor
+	document.querySelector ('.download__ico').style.background    = bgColor
 	//
 	// document.querySelector ('.quotes').style.color      = textColor
 }
 
 function fetchErr (api, code) {
+	console.log (api, code)
 	const warning = document.querySelector ('#warning__tag')
 	let errText;
 	switch (code) {
 		case 403:
-			errText = `отказано в доступе к ${api}`
+			errText = `отказано в доступе ${api}, код: ${code}`
 			break;
 		default:
-			errText = `error ${code}`
+			errText = `не удалось загрузить изображение`
 			break;
 	}
-	warning.innerHTML = errText
-	warning.classList.add ('active')
-	setTimeout (function () {
-		warning.classList.remove ('active')
-	}, 5000)
+	if (code.length <= 3) {
+		warning.innerHTML = errText
+		warning.classList.add ('active')
+		setTimeout (function () {
+			warning.classList.remove ('active')
+		}, 5000)
+	}
 }
 
 

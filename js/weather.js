@@ -1,7 +1,3 @@
-// let jsonData   = [];
-//
-// setLocalStorage('city','Minsk')
-//
 const city = document.querySelector('.city')
 city.addEventListener('change',function (){
 	if (city.value === ''){

@@ -11,24 +11,40 @@
 }
 
 .ToDo__widget {
+	&.open {
+		z-index  : 2000;
+		position : absolute;
+		top      : 20px;
+		left     : 20px;
+		//transform: translate(-50%, -10%);
+	}
+	
+	transform : translate(0, 0);
+	position  : relative;
 	@media (max-width : 765px) {
 		//order : 1;
 	}
-	transition: 1s;
-	&.hidden{
-		transform: translate(-200vw);
-		visibility: hidden;
+	//transition: 1s;
+	&.hidden {
+		transform  : translate(-200vw);
+		visibility : hidden;
 	}
+	
 	//transform  : translate(0, 390px);
 	//
-	z-index    : 300;
+	z-index   : 300;
 	//position   : absolute;
-	left       : 20px;
-	bottom     : 20px;
+	left      : 20px;
+	bottom    : 20px;
 	//transform : translate(50%, 25%);
 }
 
 .ToDo__hide_btn {
+	//
+	@media (min-width : 765px) {
+		display       : block;
+	}
+	//
 	display       : none;
 	//
 	position      : absolute;
@@ -49,30 +65,36 @@
 
 .ToDo__Wrapper {
 	@media (max-width : 765px) {
-		width      : 300px;
+		width : 300px;
 	}
-	width      : 300px;
-	height     : 300px;
+	
+	&.open {
+		height : 95vh;
+		width  : 500px;
+	}
+	
+	width    : 300px;
+	height   : 300px;
 	//height     : 100%;
-	position   : relative;
-	transition : .5s ease-in-out;
+	position : relative;
 	//
 	
+	
 	.ToDo {
-		transition     : .5s ease-in-out;
-		user-select    : none;
+		transition      : .5s ease-in-out;
+		user-select     : none;
 		//position       : absolute;
-		width          : 100%;
-		height         : 100%;
+		width           : 100%;
+		height          : 100%;
 		//
-		display        : flex;
-		flex-direction : column;
+		display         : flex;
+		flex-direction  : column;
 		
 		//overflow-y: auto;
 		//
-		backdrop-filter: blur(2px);
+		backdrop-filter : blur(2px);
 		//background     : $task_bg_color;
-		border-radius  : $glob_borderRadius;
+		border-radius   : $glob_borderRadius;
 		
 		.ToDo__nav {
 			position        : relative;
@@ -130,13 +152,13 @@
 			justify-content : space-between;
 			//
 			background      : $task_header_color;
-			backdrop-filter: blur(3px);
+			backdrop-filter : blur(3px);
 			border-radius   : $glob_borderRadius;
 			//
 		}
 		
 		.settings_btn {
-			display: none;
+			display       : none;
 			
 			border-radius : 10px;
 			background    : rgba(255, 255, 255, 0.4);
@@ -161,8 +183,8 @@
 		
 		.board {
 			//
-			height : 100%;
-			background     : $task_bg_color;
+			height          : 100%;
+			background      : $task_bg_color;
 			scroll-behavior : smooth;
 			transition      : .2s ease-in-out;
 			overflow-y      : visible;
@@ -241,7 +263,7 @@
 						padding-right : 10px;
 						//
 						&::placeholder {
-							color     : rgba(0, 0, 0, 0.61);
+							color     : rgba(255, 255, 255, 0.61);
 							font-size : 1.1rem;
 						}
 					}
@@ -273,9 +295,9 @@
 					gap            : 10px;
 					//
 					.task {
-						height: 100%;
+						height         : 100%;
 						animation      : newFromLeft .3s;
-						border         : solid rgba(0, 0, 0, 0.23) 2px;
+						//border         : solid rgba(0, 0, 0, 0.23) 2px;
 						padding        : 5px;
 						border-radius  : $glob_borderRadius;
 						font-size      : .6rem;
@@ -323,7 +345,7 @@
 								
 								//
 								display       : none;
-								background    : rgba(255, 255, 255, 0.6);
+								//background    : rgba(255, 255, 255, 0.6);
 								border-radius : 5px;
 							}
 							
@@ -352,6 +374,7 @@
 							background   : transparent;
 							resize       : none;
 							height       : 100%;
+							color: white;
 							
 							&::placeholder {
 								color     : rgba(0, 0, 0, 0.5);
@@ -385,8 +408,9 @@
 					margin          : 5px 10px;
 					//
 					.addTaskBtn {
+						width : 35px;
 						padding       : 5px;
-						background    : rgba(240, 248, 255, 0.6);
+						//background    : rgba(240, 248, 255, 0.6);
 						border-radius : 10px;
 						
 						&:hover {
@@ -396,8 +420,9 @@
 					
 					//
 					.delete__list {
+						width : 35px;
 						padding       : 5px;
-						background    : rgba(240, 248, 255, 0.6);
+						//background    : rgba(240, 248, 255, 0.6);
 						border-radius : 10px;
 						
 						&:hover {
@@ -476,4 +501,29 @@
 	z-index       : 150;
 	left          : 0;
 	top           : 0;
+}
+
+.todo_darkBG {
+	font-size       : 1.2rem;
+	display         : flex;
+	flex-direction  : column;
+	align-items     : center;
+	justify-content : center;
+	z-index         : 1000;
+	position        : fixed;
+	top             : 0;
+	left            : 0;
+	//display    : none;
+	width           : 100%;
+	height          : 100%;
+	background      : rgba(255, 255, 255, 0.0);
+	visibility      : hidden;
+	transition      : .3s;
+	
+	&.open {
+		//display   : block;
+		visibility      : visible;
+		backdrop-filter : blur(20px);
+		background      : rgba(255, 255, 255, 0.20);
+	}
 }
